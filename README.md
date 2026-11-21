@@ -28,7 +28,7 @@ Variables (opcional, ya tienen valor por defecto): copia `app/.env.example` a `a
 
 ## APK de prueba
 
-Cada push a `main` corre el workflow **APK de prueba**. El archivo `rcerito-debug-apk` aparece en la pestaña **Actions** del repo; descárgalo e instálalo en tu Android (permite "orígenes desconocidos").
+Cada push a `main` corre el workflow **APK de prueba** y publica el archivo en **Releases → apk-prueba** del repo. Desde el teléfono: abre esa versión en GitHub, descarga `app-debug.apk` e instálalo (permite apps de "orígenes desconocidos").
 
 Para compilar en tu PC necesitas Android Studio (JDK 21 incluido):
 
