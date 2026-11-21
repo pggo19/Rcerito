@@ -44,6 +44,7 @@ img.px-img { image-rendering: pixelated; display: inline-block; vertical-align: 
   margin: 0 auto;
   background: var(--paper);
   position: relative;
+  padding-top: env(safe-area-inset-top);
   padding-bottom: 84px;
 }
 .app.is-immersive { padding-bottom: 24px; }
