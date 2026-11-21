@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Hud, NavBar, type Tab } from './components/ui'
 import { Ctx, type AppCtx } from './lib/app'
 import { buildLessons, loadQuestions } from './lib/questions'
+import { cargarPromo, cargarResumen, promoGuardada, type PromoR0, type ResumenSalas } from './lib/nube'
 import { useGame } from './lib/store'
 import type { ExamCode, Question, Screen } from './lib/types'
 import bundled from './data/questions.json'
@@ -12,6 +13,8 @@ import { Onboarding } from './screens/Onboarding'
 import { Perfil, Pro } from './screens/Perfil'
 import { Banco, Flashcards, Plaza } from './screens/Plaza'
 import { Simulacro } from './screens/Simulacro'
+import { Tienda } from './screens/Tienda'
+import { MiAvatar } from './screens/MiAvatar'
 
 const TAB_OF: Partial<Record<Screen['name'], Tab>> = {
   campus: 'campus',
@@ -22,6 +25,8 @@ const TAB_OF: Partial<Record<Screen['name'], Tab>> = {
   simulacro: 'simulacro',
   perfil: 'perfil',
   pro: 'perfil',
+  tienda: 'plaza',
+  avatar: 'perfil',
 }
 
 export default function App() {
@@ -30,6 +35,8 @@ export default function App() {
   const [source, setSource] = useState<'nube' | 'local'>('local')
   const [screen, setScreen] = useState<Screen>(() => (state.target ? { name: 'campus' } : { name: 'onboarding' }))
   const [toastMsg, setToastMsg] = useState<string | null>(null)
+  const [resumen, setResumen] = useState<ResumenSalas>({})
+  const [promo, setPromo] = useState<PromoR0 | null>(() => promoGuardada())
   const toastTimer = useRef<number>(0)
 
   useEffect(() => {
@@ -37,6 +44,8 @@ export default function App() {
       setQuestions(r.questions)
       setSource(r.source)
     })
+    cargarResumen().then(setResumen)
+    cargarPromo().then(setPromo)
   }, [])
 
   const lessons = useMemo(
@@ -59,14 +68,14 @@ export default function App() {
     toastTimer.current = window.setTimeout(() => setToastMsg(null), 2800)
   }, [])
 
-  const ctx: AppCtx = { state, update, reset, questions, source, lessons, go, toast }
+  const ctx: AppCtx = { state, update, reset, questions, source, lessons, go, toast, resumen, promo }
   const tab = TAB_OF[screen.name]
   const immersive = screen.name === 'lesson' || screen.name === 'onboarding'
 
   return (
     <Ctx.Provider value={ctx}>
       <div className={`app ${immersive ? 'is-immersive' : ''}`}>
-        {!immersive && <Hud state={state} onLives={() => toast(state.pro ? 'Tienes vidas ilimitadas' : 'Recuperas 1 vida cada 30 minutos')} />}
+        {!immersive && <Hud state={state} onLives={() => toast(state.pro ? 'Tienes vidas ilimitadas' : 'Recuperas 1 vida cada 30 minutos')} onGems={() => go({ name: 'tienda' })} />}
         {screen.name === 'onboarding' && <Onboarding />}
         {screen.name === 'campus' && <Campus />}
         {screen.name === 'building' && <Building exam={screen.exam} />}
@@ -77,6 +86,8 @@ export default function App() {
         {screen.name === 'simulacro' && <Simulacro exam={screen.exam} />}
         {screen.name === 'perfil' && <Perfil />}
         {screen.name === 'pro' && <Pro />}
+        {screen.name === 'tienda' && <Tienda />}
+        {screen.name === 'avatar' && <MiAvatar />}
         {!immersive && tab && <NavBar active={tab} onGo={(t) => go({ name: t })} />}
         {toastMsg && (
           <div className="toast px" role="status">

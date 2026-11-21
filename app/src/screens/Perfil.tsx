@@ -1,14 +1,22 @@
 import { useState } from 'react'
+import { AvatarDe, MiEscena } from '../components/Personaje'
+import { PromoR0Banner } from '../components/PromoR0'
 import { Px, Sheet } from '../components/ui'
-import { MEDAL, UKU } from '../game/sprites'
-import { useApp } from '../lib/app'
+import { ETAPAS, insigniaUrl } from '../game/pixel'
+import { MEDAL } from '../game/sprites'
+import { useApp, verPromo } from '../lib/app'
+import { ITEMS } from '../lib/catalogo'
+import { xpParaNivel } from '../lib/economia'
 import { EXAMS, examInfo } from '../lib/types'
 
 export function Perfil() {
-  const { state, reset, go, source, questions } = useApp()
+  const { state, reset, go, source, questions, promo } = useApp()
   const [confirm, setConfirm] = useState(false)
   const totalOk = Object.values(state.stats).reduce((a, s) => a + s.ok, 0)
   const total = Object.values(state.stats).reduce((a, s) => a + s.total, 0)
+  const desde = xpParaNivel(state.nivel)
+  const hasta = xpParaNivel(state.nivel + 1)
+  const insignias = ITEMS.filter((i) => i.slot === 'insignia' && state.inventario.includes(i.id))
 
   return (
     <main className="screen perfil">
@@ -20,12 +28,14 @@ export function Perfil() {
         </div>
         <div className="carnet-body">
           <div className="carnet-photo px">
-            <Px sprite={UKU} scale={4} alt="Foto de Uku" />
+            <AvatarDe apariencia={state.apariencia} equipo={state.equipoAvatar} size={72} alt="Tu foto" />
           </div>
           <div className="carnet-data">
             <p className="carnet-name">{state.name || 'Sin nombre'}</p>
             <p className="carnet-line">Rumbo a {state.target ? examInfo(state.target).name : '—'}</p>
-            <p className="carnet-line">{state.pro ? 'Plan Pro' : 'Plan gratis'}</p>
+            <p className="carnet-line">
+              Nivel {state.nivel} · {state.pro ? 'Plan Pro' : 'Plan gratis'}
+            </p>
           </div>
         </div>
         <dl className="carnet-stats">
@@ -44,6 +54,28 @@ export function Perfil() {
         </dl>
       </section>
 
+      <div className="meter nivel" role="progressbar" aria-valuemin={desde} aria-valuemax={hasta} aria-valuenow={state.xp} aria-label={`Experiencia para el nivel ${state.nivel + 1}`}>
+        <span className="on" style={{ width: `${Math.min(100, ((state.xp - desde) / Math.max(1, hasta - desde)) * 100)}%` }} />
+      </div>
+      <p className="muted small">
+        {state.xp - desde} de {hasta - desde} XP para el nivel {state.nivel + 1}.
+      </p>
+
+      <h2 className="subtitle">
+        {state.ukuNombre} · {ETAPAS[state.ukuEtapa].nombre.replace('Uku ', '')}
+      </h2>
+      <MiEscena alto={200} />
+      <div className="row">
+        <button type="button" className="btn" onClick={() => go({ name: 'avatar' })}>
+          Vestir y editar
+        </button>
+        <button type="button" className="btn btn-secondary" onClick={() => go({ name: 'tienda' })}>
+          Tienda
+        </button>
+      </div>
+
+      {verPromo(state, promo) && <PromoR0Banner />}
+
       <h2 className="subtitle">Medallas</h2>
       <ul className="medals">
         {EXAMS.map((e) => {
@@ -56,6 +88,17 @@ export function Perfil() {
           )
         })}
       </ul>
+
+      {insignias.length > 0 && (
+        <ul className="insignias">
+          {insignias.map((i) => (
+            <li key={i.id}>
+              <img src={insigniaUrl(i.id)} alt="" width={36} height={36} />
+              <span className="small">{i.nombre}</span>
+            </li>
+          ))}
+        </ul>
+      )}
 
       <h2 className="subtitle">Precisión por examen</h2>
       <table className="area-table">
@@ -79,7 +122,7 @@ export function Perfil() {
       {!state.pro && (
         <button type="button" className="pro-banner px" onClick={() => go({ name: 'pro' })}>
           <span className="next-title">Rcerito Pro</span>
-          <span className="small">Vidas ilimitadas, simulacros sin tope y diagnóstico por área.</span>
+          <span className="small">Todas las lecciones, vidas ilimitadas, simulacros oficiales y accesorios exclusivos.</span>
         </button>
       )}
 
@@ -131,10 +174,10 @@ export function Pro() {
       </button>
       <h1 className="title">Rcerito Pro</h1>
       <ul className="pro-list">
-        <li>Vidas ilimitadas en todas las salas</li>
-        <li>Simulacros sin tope para los tres exámenes</li>
-        <li>Todos los edificios abiertos desde el primer día</li>
-        <li>Diagnóstico por área y repaso de errores sin límite</li>
+        <li>Todas las lecciones de cada sala (gratis: las 2 primeras)</li>
+        <li>Vidas ilimitadas</li>
+        <li>Simulacros Express y oficiales sin tope, con nota sobre 20</li>
+        <li>Accesorios exclusivos para ti y para Uku</li>
       </ul>
       <div className="stack" role="radiogroup" aria-label="Plan">
         {PLANS.map((p) => (

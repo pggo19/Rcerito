@@ -2,16 +2,18 @@ import { useCallback, useState } from 'react'
 import { CampusCanvas, MAP_H, MAP_W, PLACES, type Place } from '../game/CampusCanvas'
 import { Px } from '../components/ui'
 import { LOCK, MEDAL } from '../game/sprites'
-import { examProgress, isUnlocked, useApp } from '../lib/app'
+import { examProgress, useApp, verPromo } from '../lib/app'
+import { PromoR0Banner } from '../components/PromoR0'
 import { FREE_PRACTICE_LESSONS } from '../lib/store'
-import { EXAMS, examInfo, type ExamCode } from '../lib/types'
+import { examInfo, type ExamCode } from '../lib/types'
 
 let lastPlace: Place = 'PLAZA'
 
 export function Campus() {
-  const { state, lessons, go, toast } = useApp()
+  const { state, lessons, go, promo } = useApp()
   const [request, setRequest] = useState<{ place: Place; n: number } | null>(null)
-  const locked = EXAMS.filter((e) => !isUnlocked(state, e.code)).map((e) => e.code as Place)
+  // los tres edificios están abiertos; lo Pro se decide por lección
+  const locked: Place[] = []
 
   const onArrive = useCallback(
     (place: Place) => {
@@ -20,14 +22,10 @@ export function Campus() {
         go({ name: 'plaza' })
         return
       }
-      if (!isUnlocked(state, place)) {
-        toast(`Gana la medalla de ${examInfo(state.target!).building} para abrir este edificio`)
-        return
-      }
       lastPlace = place
       go({ name: 'building', exam: place })
     },
-    [go, state, toast],
+    [go],
   )
 
   const target = state.target ?? 'ENAM'
@@ -70,7 +68,7 @@ export function Campus() {
             <p className="next-kicker">{examInfo(target).building}</p>
             <p className="next-title">{next.area}</p>
             <p className="muted small">
-              {examProgress(state, list).done} de {list.length} salas completas
+              {examProgress(state, list).done} de {list.length} lecciones completas
             </p>
           </div>
           <button type="button" className="btn" onClick={() => go({ name: 'lesson', lessonId: next.id })}>
@@ -85,6 +83,8 @@ export function Campus() {
           </button>
         </section>
       )}
+
+      {verPromo(state, promo) && <PromoR0Banner />}
 
       {state.practiceLeft > 0 && !state.pro && (
         <p className="practice-note">

@@ -10,7 +10,7 @@ Proyecto **independiente de R0**: repositorio, base de datos, claves y usuarios 
 | --- | --- |
 | `app/` | App en React + TypeScript (Vite). Se empaqueta para Android con Capacitor. |
 | `app/android/` | Proyecto Android generado por Capacitor (`pe.rcerito.app`, provisional). |
-| `content/` | Preguntas de prueba y el script que reparte la letra correcta y valida el formato. |
+| `content/` | Preguntas de prueba, importador, y `content/arte/` (generador de los sprites de Uku, avatar, accesorios y fondos). |
 | `supabase/migrations/` | Esquema de la base (tablas, RLS, permisos por columna). |
 | `docs/` | Decisiones de diseño y formato de preguntas. |
 | `.github/workflows/` | Compila un APK de prueba en GitHub Actions en cada push. |
@@ -61,3 +61,13 @@ Eso actualiza `app/src/data/questions.json` (copia sin conexión) y `content/pre
 ## Estado
 
 Ver `docs/estado.md`.
+
+## Sprites de Uku, avatar y tienda
+
+Los dibujos se generan por capas con Python (Pillow):
+
+```bash
+python3 content/arte/exportar.py   # escribe app/src/assets/pixel/
+```
+
+Reglas de Pro, gemas, tienda y evolución de Uku: [`docs/PRO_GEMAS_AVATAR.md`](docs/PRO_GEMAS_AVATAR.md).

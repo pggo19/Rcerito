@@ -70,3 +70,5 @@ export type Screen =
   | { name: 'simulacro'; exam?: ExamCode }
   | { name: 'perfil' }
   | { name: 'pro' }
+  | { name: 'tienda' }
+  | { name: 'avatar' }
