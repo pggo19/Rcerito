@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Rcerito</string>
+    <string name="title_activity_main">Rcerito</string>
+    <string name="package_name">pe.rcerito.app</string>
+    <string name="custom_url_scheme">pe.rcerito.app</string>
+</resources>

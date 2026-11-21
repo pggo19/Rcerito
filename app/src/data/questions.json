@@ -1,0 +1,1262 @@
+[
+  {
+    "id": "ess-0001",
+    "examen": "ESSALUD",
+    "area": "Medicina interna",
+    "tema": "Cetoacidosis diabética",
+    "dificultad": 2,
+    "tipo": "caso_clinico",
+    "enunciado": "Varón de 19 años con diabetes tipo 1 llega con vómitos, dolor abdominal y respiración de Kussmaul. Glucosa 480 mg/dL, pH 7.12, HCO3 9 mEq/L, K 4.8 mEq/L, cetonemia positiva. PA 95/60 mmHg. ¿Cuál es la primera medida terapéutica?",
+    "opciones": {
+      "A": "Potasio oral y control de glucosa en 2 h",
+      "B": "Bicarbonato de sodio endovenoso en infusión",
+      "C": "Insulina regular en bolo antes de hidratar",
+      "D": "Cloruro de sodio 0.9 % en bolo endovenoso"
+    },
+    "correcta": "D",
+    "explicacion": "En la cetoacidosis la prioridad es reponer el volumen con cristaloides isotónicos; la insulina en infusión se inicia después, con potasio mayor de 3.5 mEq/L.",
+    "por_que_no": {
+      "A": "Es una emergencia con depleción de volumen; el manejo es endovenoso y en hospital.",
+      "B": "El bicarbonato no se indica con pH mayor de 6.9; no mejora el pronóstico.",
+      "C": "La insulina sin reponer volumen empeora la hipotensión y puede bajar el potasio; primero se hidrata."
+    },
+    "fuente": {
+      "documento": "ADA/EASD/JBDS/AACE/DTS. Hyperglycemic crises in adults with diabetes: a consensus report",
+      "anio": 2024,
+      "url": "https://diabetesjournals.org/care/article/47/8/1257/156808"
+    },
+    "estado": "validada_ia"
+  },
+  {
+    "id": "ess-0002",
+    "examen": "ESSALUD",
+    "area": "Medicina interna",
+    "tema": "Hiperpotasemia",
+    "dificultad": 2,
+    "tipo": "caso_clinico",
+    "enunciado": "Mujer de 66 años con enfermedad renal crónica estadio 4 acude por debilidad. Potasio sérico 7.1 mEq/L. El ECG muestra ondas T picudas y QRS ensanchado. ¿Cuál es el primer fármaco que debe administrarse?",
+    "opciones": {
+      "A": "Furosemida endovenosa en dosis alta",
+      "B": "Salbutamol inhalado como única medida",
+      "C": "Gluconato de calcio al 10 % endovenoso",
+      "D": "Resina de intercambio catiónico oral"
+    },
+    "correcta": "C",
+    "explicacion": "Con cambios electrocardiográficos se estabiliza primero la membrana del miocardio con calcio endovenoso; luego se redistribuye el potasio con insulina y glucosa o salbutamol.",
+    "por_que_no": {
+      "A": "Baja el potasio lentamente y depende de la función renal; no protege el miocardio.",
+      "B": "Desplaza potasio al interior de la célula, pero no estabiliza la membrana cardiaca.",
+      "D": "Actúa en horas; no sirve como primera medida ante cambios en el ECG."
+    },
+    "fuente": {
+      "documento": "UK Kidney Association. Clinical Practice Guidelines: Treatment of Acute Hyperkalaemia in Adults",
+      "anio": 2023,
+      "url": "https://ukkidney.org/health-professionals/guidelines/treatment-acute-hyperkalaemia-adults"
+    },
+    "estado": "validada_ia"
+  },
+  {
+    "id": "ess-0003",
+    "examen": "ESSALUD",
+    "area": "Medicina interna",
+    "tema": "Neumonía adquirida en la comunidad",
+    "dificultad": 2,
+    "tipo": "caso_clinico",
+    "enunciado": "Varón de 72 años con fiebre y tos productiva de 3 días. Está confuso. FR 32 por minuto, PA 85/50 mmHg, urea 58 mg/dL. Radiografía con consolidación lobar derecha. ¿Cuál es la conducta más adecuada?",
+    "opciones": {
+      "A": "Hospitalizar y valorar ingreso a UCI",
+      "B": "Repetir la radiografía en 48 horas y decidir",
+      "C": "Tratamiento ambulatorio con amoxicilina oral",
+      "D": "Observación por 6 horas y alta con antibiótico"
+    },
+    "correcta": "A",
+    "explicacion": "Suma 5 puntos en CURB-65 (confusión, urea, frecuencia respiratoria, presión baja y edad de 65 o más): neumonía grave que requiere hospitalización y valoración por UCI.",
+    "por_que_no": {
+      "B": "Retrasar la decisión en un paciente con hipotensión aumenta la mortalidad.",
+      "C": "Tiene CURB-65 de 5 puntos; el manejo ambulatorio es para 0 a 1 punto.",
+      "D": "Confusión, taquipnea e hipotensión son criterios de gravedad que exigen hospitalización."
+    },
+    "fuente": {
+      "documento": "ATS/IDSA. Diagnosis and Treatment of Adults with Community-acquired Pneumonia",
+      "anio": 2019,
+      "url": "https://www.atsjournals.org/doi/10.1164/rccm.201908-1581ST"
+    },
+    "estado": "validada_ia"
+  },
+  {
+    "id": "ess-0004",
+    "examen": "ESSALUD",
+    "area": "Cirugía general",
+    "tema": "Apendicitis aguda",
+    "dificultad": 1,
+    "tipo": "caso_clinico",
+    "enunciado": "Varón de 22 años con dolor periumbilical de 18 horas que migró a fosa ilíaca derecha, náuseas y fiebre de 38.2 °C. Blumberg positivo, leucocitos 15 000/mm3. ¿Cuál es la conducta indicada?",
+    "opciones": {
+      "A": "Enema baritado y analgesia con opioides",
+      "B": "Apendicectomía con profilaxis antibiótica",
+      "C": "Colonoscopía de urgencia para confirmar",
+      "D": "Antibiótico oral y alta con control en 48 h"
+    },
+    "correcta": "B",
+    "explicacion": "El cuadro clásico (migración del dolor, fiebre, Blumberg y leucocitosis) indica apendicitis aguda; el tratamiento es la apendicectomía con antibiótico profiláctico.",
+    "por_que_no": {
+      "A": "El enema no está indicado y puede favorecer la perforación.",
+      "C": "La colonoscopía está contraindicada ante sospecha de apendicitis aguda.",
+      "D": "Con peritonismo localizado y cuadro típico, el estándar sigue siendo la cirugía."
+    },
+    "fuente": {
+      "documento": "WSES Jerusalem guidelines on diagnosis and treatment of acute appendicitis",
+      "anio": 2020,
+      "url": "https://wjes.biomedcentral.com/articles/10.1186/s13017-020-00306-3"
+    },
+    "estado": "validada_ia"
+  },
+  {
+    "id": "ess-0005",
+    "examen": "ESSALUD",
+    "area": "Cirugía general",
+    "tema": "Trauma: evaluación primaria",
+    "dificultad": 1,
+    "tipo": "caso_clinico",
+    "enunciado": "Motociclista de 30 años llega tras un choque. Está inconsciente, con ronquido y sangre en la boca. PA 110/70 mmHg, FC 104 por minuto. ¿Cuál es la primera acción?",
+    "opciones": {
+      "A": "Solicitar tomografía cerebral sin contraste",
+      "B": "Realizar ecografía FAST del abdomen",
+      "C": "Asegurar la vía aérea con control cervical",
+      "D": "Colocar dos vías periféricas de grueso calibre"
+    },
+    "correcta": "C",
+    "explicacion": "La evaluación primaria sigue el orden ABCDE: primero la vía aérea con restricción del movimiento de la columna cervical.",
+    "por_que_no": {
+      "A": "El paciente no puede ir a imágenes con una vía aérea en riesgo.",
+      "B": "La FAST es un complemento; no antecede al manejo de la vía aérea.",
+      "D": "Es parte de la circulación (C), que va después de la vía aérea."
+    },
+    "fuente": {
+      "documento": "American College of Surgeons. ATLS Advanced Trauma Life Support, 10.ª ed.",
+      "anio": 2018,
+      "url": "https://www.facs.org/quality-programs/trauma/education/advanced-trauma-life-support/"
+    },
+    "estado": "validada_ia"
+  },
+  {
+    "id": "ess-0006",
+    "examen": "ESSALUD",
+    "area": "Cirugía general",
+    "tema": "Quemaduras: superficie corporal",
+    "dificultad": 1,
+    "tipo": "directa",
+    "enunciado": "Un adulto sufre quemaduras de segundo grado en ambos miembros superiores completos y en toda la cara anterior del tronco. Según la regla de los nueve, ¿qué porcentaje de superficie corporal está quemada?",
+    "opciones": {
+      "A": "18 %",
+      "B": "45 %",
+      "C": "27 %",
+      "D": "36 %"
+    },
+    "correcta": "D",
+    "explicacion": "Cada miembro superior vale 9 % y la cara anterior del tronco 18 %: 9 + 9 + 18 = 36 %.",
+    "por_que_no": {
+      "A": "Corresponde solo a los dos miembros superiores.",
+      "B": "Incluiría además la mitad posterior del tronco.",
+      "C": "Solo sumaría un miembro superior y la cara anterior del tronco."
+    },
+    "fuente": {
+      "documento": "American Burn Association. Advanced Burn Life Support (ABLS) Provider Manual",
+      "anio": 2018,
+      "url": "https://ameriburn.org/education/abls-program/"
+    },
+    "estado": "validada_ia"
+  },
+  {
+    "id": "ess-0007",
+    "examen": "ESSALUD",
+    "area": "Pediatría",
+    "tema": "Deshidratación por diarrea",
+    "dificultad": 2,
+    "tipo": "caso_clinico",
+    "enunciado": "Niño de 2 años con diarrea líquida de 2 días. Está irritable, tiene ojos hundidos, bebe con avidez y el pliegue cutáneo regresa lentamente. ¿Qué plan de tratamiento corresponde?",
+    "opciones": {
+      "A": "Plan B: SRO 75 ml/kg en 4 horas",
+      "B": "Plan C: hidratación endovenosa de inmediato",
+      "C": "Ayuno de 6 horas y luego reiniciar la dieta",
+      "D": "Plan A: más líquidos en casa y signos de alarma"
+    },
+    "correcta": "A",
+    "explicacion": "Dos o más signos (irritabilidad, ojos hundidos, bebe ávidamente, pliegue lento) clasifican como algún grado de deshidratación: plan B con SRO en el establecimiento.",
+    "por_que_no": {
+      "B": "El plan C es para deshidratación grave (letargo, no puede beber, pliegue muy lento).",
+      "C": "El ayuno no está indicado y empeora la deshidratación.",
+      "D": "El plan A es para niños sin deshidratación."
+    },
+    "fuente": {
+      "documento": "OMS. Tratamiento de la diarrea: manual clínico para los servicios de salud",
+      "anio": 2005,
+      "url": "https://iris.who.int/handle/10665/43209"
+    },
+    "estado": "validada_ia"
+  },
+  {
+    "id": "ess-0008",
+    "examen": "ESSALUD",
+    "area": "Pediatría",
+    "tema": "Bronquiolitis",
+    "dificultad": 2,
+    "tipo": "caso_clinico",
+    "enunciado": "Lactante de 4 meses con 3 días de rinorrea y tos. Hoy tiene sibilancias y crepitantes difusos. FR 48 por minuto, saturación 95 % al aire ambiente, se alimenta bien. ¿Cuál es el manejo recomendado?",
+    "opciones": {
+      "A": "Corticoide sistémico por cinco días",
+      "B": "Amoxicilina oral por siete días",
+      "C": "Medidas de soporte y aspiración nasal",
+      "D": "Salbutamol nebulizado cada 20 minutos"
+    },
+    "correcta": "C",
+    "explicacion": "La bronquiolitis es viral y autolimitada; con buena saturación y alimentación el manejo es de soporte: aspiración nasal, hidratación y vigilancia de signos de alarma.",
+    "por_que_no": {
+      "A": "Los corticoides no reducen ingresos ni duración de la enfermedad.",
+      "B": "Es una infección viral; el antibiótico no está indicado sin otra causa.",
+      "D": "Los broncodilatadores no mejoran la evolución de la bronquiolitis."
+    },
+    "fuente": {
+      "documento": "NICE NG9. Bronchiolitis in children: diagnosis and management",
+      "anio": 2021,
+      "url": "https://www.nice.org.uk/guidance/ng9"
+    },
+    "estado": "validada_ia"
+  },
+  {
+    "id": "ess-0009",
+    "examen": "ESSALUD",
+    "area": "Pediatría",
+    "tema": "Enfermedad de Kawasaki",
+    "dificultad": 2,
+    "tipo": "caso_clinico",
+    "enunciado": "Niño de 3 años con fiebre de 6 días, conjuntivitis bilateral sin secreción, labios rojos y fisurados, exantema polimorfo, edema de manos y adenopatía cervical de 2 cm. ¿Cuál es el tratamiento?",
+    "opciones": {
+      "A": "Paracetamol y observación en el hogar",
+      "B": "Amoxicilina con ácido clavulánico oral",
+      "C": "Corticoides tópicos y antihistamínico",
+      "D": "Inmunoglobulina endovenosa y aspirina"
+    },
+    "correcta": "D",
+    "explicacion": "Fiebre de 5 días o más con 4 de 5 criterios clínicos define Kawasaki; la inmunoglobulina endovenosa en los primeros 10 días reduce los aneurismas coronarios.",
+    "por_que_no": {
+      "A": "Retrasar el tratamiento aumenta el riesgo de aneurismas coronarios.",
+      "B": "No hay evidencia de infección bacteriana; el cuadro cumple criterios de Kawasaki.",
+      "C": "No previene la complicación principal, que son los aneurismas coronarios."
+    },
+    "fuente": {
+      "documento": "AHA. Diagnosis, Treatment, and Long-Term Management of Kawasaki Disease",
+      "anio": 2017,
+      "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000000484"
+    },
+    "estado": "validada_ia"
+  },
+  {
+    "id": "ess-0010",
+    "examen": "ESSALUD",
+    "area": "Ginecología y obstetricia",
+    "tema": "Preeclampsia con criterios de severidad",
+    "dificultad": 1,
+    "tipo": "caso_clinico",
+    "enunciado": "Gestante de 34 semanas con cefalea intensa y escotomas. PA 165/112 mmHg, proteinuria positiva. ¿Qué fármaco se usa para prevenir las convulsiones?",
+    "opciones": {
+      "A": "Diazepam endovenoso en bolo",
+      "B": "Sulfato de magnesio endovenoso",
+      "C": "Nifedipino oral de liberación rápida",
+      "D": "Fenitoína endovenosa de carga"
+    },
+    "correcta": "B",
+    "explicacion": "El sulfato de magnesio es el fármaco de elección para prevenir y tratar la eclampsia; la presión se controla aparte con antihipertensivos.",
+    "por_que_no": {
+      "A": "Sirve para yugular una crisis, pero no es el fármaco de prevención en preeclampsia.",
+      "C": "Controla la presión, pero no previene las convulsiones.",
+      "D": "Es menos eficaz que el sulfato de magnesio para prevenir la eclampsia."
+    },
+    "fuente": {
+      "documento": "ACOG Practice Bulletin 222. Gestational Hypertension and Preeclampsia",
+      "anio": 2020,
+      "url": "https://www.acog.org/clinical/clinical-guidance/practice-bulletin/articles/2020/06/gestational-hypertension-and-preeclampsia"
+    },
+    "estado": "validada_ia"
+  },
+  {
+    "id": "ess-0011",
+    "examen": "ESSALUD",
+    "area": "Ginecología y obstetricia",
+    "tema": "Hemorragia posparto",
+    "dificultad": 1,
+    "tipo": "caso_clinico",
+    "enunciado": "Puérpera de 25 años, 20 minutos después de un parto vaginal, presenta sangrado abundante. El útero está blando y por encima del ombligo. PA 100/60 mmHg. ¿Cuál es el manejo inicial?",
+    "opciones": {
+      "A": "Legrado uterino de forma inmediata",
+      "B": "Oxitocina endovenosa y masaje uterino",
+      "C": "Ácido tranexámico como única medida",
+      "D": "Histerectomía obstétrica de emergencia"
+    },
+    "correcta": "B",
+    "explicacion": "Útero blando y sangrado posparto sugieren atonía; la primera línea es la oxitocina con masaje uterino, junto con la reanimación.",
+    "por_que_no": {
+      "A": "No trata la atonía, que es la causa más frecuente.",
+      "C": "Se añade al manejo, pero no reemplaza al uterotónico.",
+      "D": "Es el último recurso cuando fallan las medidas médicas y conservadoras."
+    },
+    "fuente": {
+      "documento": "OMS. Recomendaciones para la prevención y el tratamiento de la hemorragia posparto",
+      "anio": 2012,
+      "url": "https://iris.who.int/handle/10665/75411"
+    },
+    "estado": "validada_ia"
+  },
+  {
+    "id": "ess-0012",
+    "examen": "ESSALUD",
+    "area": "Ginecología y obstetricia",
+    "tema": "Embarazo ectópico",
+    "dificultad": 3,
+    "tipo": "caso_clinico",
+    "enunciado": "Mujer de 28 años con 6 semanas de amenorrea y dolor pélvico leve. Hemodinámicamente estable. β-hCG 2 500 mUI/mL, ecografía transvaginal sin saco intrauterino y masa anexial de 3 cm sin latido. ¿Cuál es el manejo de elección?",
+    "opciones": {
+      "A": "Legrado uterino por aspiración manual (AMEU)",
+      "B": "Metotrexato intramuscular en dosis única",
+      "C": "Alta sin control seriado de β-hCG",
+      "D": "Salpingectomía por laparotomía de emergencia"
+    },
+    "correcta": "B",
+    "explicacion": "Paciente estable, masa menor de 3.5 cm, sin latido y β-hCG menor de 5 000: es buena candidata a metotrexato con control seriado de β-hCG.",
+    "por_que_no": {
+      "A": "No trata un embarazo de localización anexial.",
+      "C": "Toda opción no quirúrgica exige seguimiento de β-hCG hasta negativizar.",
+      "D": "Se reserva para la paciente inestable o con rotura."
+    },
+    "fuente": {
+      "documento": "ACOG Practice Bulletin 193. Tubal Ectopic Pregnancy",
+      "anio": 2018,
+      "url": "https://www.acog.org/clinical/clinical-guidance/practice-bulletin/articles/2018/03/tubal-ectopic-pregnancy"
+    },
+    "estado": "validada_ia"
+  },
+  {
+    "id": "ess-0013",
+    "examen": "ESSALUD",
+    "area": "Ciencias básicas",
+    "tema": "Intoxicación por organofosforados",
+    "dificultad": 1,
+    "tipo": "caso_clinico",
+    "enunciado": "Agricultor de 40 años llega tras fumigar sin protección. Tiene miosis, sialorrea, broncorrea, bradicardia y fasciculaciones. ¿Cuál es el antídoto de primera línea?",
+    "opciones": {
+      "A": "Atropina endovenosa",
+      "B": "N-acetilcisteína oral",
+      "C": "Flumazenil endovenoso",
+      "D": "Naloxona endovenosa"
+    },
+    "correcta": "A",
+    "explicacion": "Los organofosforados inhiben la acetilcolinesterasa; la atropina bloquea los receptores muscarínicos y se titula hasta secar las secreciones bronquiales.",
+    "por_que_no": {
+      "B": "Es el antídoto del paracetamol.",
+      "C": "Revierte benzodiacepinas; no actúa sobre el exceso colinérgico.",
+      "D": "Es el antídoto de los opioides, que no causan sialorrea ni broncorrea."
+    },
+    "fuente": {
+      "documento": "Goodman & Gilman. Las bases farmacológicas de la terapéutica, 14.ª ed.",
+      "anio": 2023,
+      "url": ""
+    },
+    "estado": "validada_ia"
+  },
+  {
+    "id": "ess-0014",
+    "examen": "ESSALUD",
+    "area": "Ciencias básicas",
+    "tema": "Tétanos: mecanismo de la toxina",
+    "dificultad": 2,
+    "tipo": "directa",
+    "enunciado": "La tetanospasmina produce espasmos y rigidez muscular. ¿Cuál es su mecanismo de acción?",
+    "opciones": {
+      "A": "Bloquea la liberación presináptica de acetilcolina",
+      "B": "Activa la adenilato ciclasa intestinal",
+      "C": "Bloquea la liberación de glicina y GABA",
+      "D": "Inhibe la síntesis proteica vía EF-2"
+    },
+    "correcta": "C",
+    "explicacion": "La tetanospasmina viaja por transporte axonal retrógrado y bloquea la liberación de neurotransmisores inhibitorios en la médula; el resultado es la contracción sostenida.",
+    "por_que_no": {
+      "A": "Ese es el mecanismo de la toxina botulínica, que causa parálisis flácida.",
+      "B": "Es el mecanismo de la toxina colérica.",
+      "D": "Corresponde a la toxina diftérica."
+    },
+    "fuente": {
+      "documento": "Murray. Microbiología médica, 9.ª ed.",
+      "anio": 2021,
+      "url": ""
+    },
+    "estado": "validada_ia"
+  },
+  {
+    "id": "ess-0015",
+    "examen": "ESSALUD",
+    "area": "Medicina interna",
+    "tema": "Anemia ferropénica",
+    "dificultad": 2,
+    "tipo": "directa",
+    "enunciado": "Mujer de 32 años con menstruaciones abundantes, fatiga y Hb 9.1 g/dL con VCM 71 fL. ¿Qué otro hallazgo de laboratorio es el esperado?",
+    "opciones": {
+      "A": "Ferritina baja y ADE elevado",
+      "B": "Ferritina alta y transferrina baja",
+      "C": "Hierro sérico alto y ferritina alta",
+      "D": "Reticulocitos altos y VCM elevado"
+    },
+    "correcta": "A",
+    "explicacion": "En la ferropenia la ferritina es baja (el mejor marcador de depósitos), la transferrina alta y el ADE aumentado por la anisocitosis.",
+    "por_que_no": {
+      "B": "Es el patrón de la anemia de enfermedad crónica.",
+      "C": "Orienta a sobrecarga de hierro o anemia sideroblástica.",
+      "D": "Sugiere hemólisis o sangrado agudo con respuesta medular, no déficit de hierro."
+    },
+    "fuente": {
+      "documento": "Harrison. Principios de medicina interna, 21.ª ed.",
+      "anio": 2022,
+      "url": ""
+    },
+    "estado": "validada_ia"
+  },
+  {
+    "id": "enam-0001",
+    "examen": "ENAM",
+    "area": "Medicina",
+    "tema": "Tromboembolismo pulmonar",
+    "dificultad": 2,
+    "tipo": "caso_clinico",
+    "enunciado": "Mujer de 45 años, a los 10 días de una artroplastia de cadera, presenta disnea súbita y dolor pleurítico. FC 112 por minuto, saturación 90 %, PA 128/80 mmHg. Wells alto. ¿Cuál es el examen indicado?",
+    "opciones": {
+      "A": "Dímero D como única prueba diagnóstica",
+      "B": "Espirometría con prueba broncodilatadora",
+      "C": "Radiografía de tórax como prueba definitiva",
+      "D": "Angiotomografía de arterias pulmonares"
+    },
+    "correcta": "D",
+    "explicacion": "Con probabilidad clínica alta y paciente estable, se pasa directamente a la angiotomografía pulmonar; el dímero D solo sirve para descartar en probabilidad baja o intermedia.",
+    "por_que_no": {
+      "A": "Con probabilidad clínica alta el dímero D no descarta la enfermedad.",
+      "B": "No tiene utilidad en la sospecha de tromboembolismo.",
+      "C": "Ayuda a descartar otras causas, pero no confirma el diagnóstico."
+    },
+    "fuente": {
+      "documento": "ESC Guidelines for the diagnosis and management of acute pulmonary embolism",
+      "anio": 2019,
+      "url": "https://academic.oup.com/eurheartj/article/41/4/543/5556136"
+    },
+    "estado": "validada_ia"
+  },
+  {
+    "id": "enam-0002",
+    "examen": "ENAM",
+    "area": "Medicina",
+    "tema": "Hemorragia variceal",
+    "dificultad": 3,
+    "tipo": "caso_clinico",
+    "enunciado": "Varón de 55 años con cirrosis alcohólica presenta hematemesis abundante. FC 118 por minuto, PA 90/60 mmHg. Ya se inició reanimación con cristaloides y octreotide. ¿Qué otra medida reduce la mortalidad en esta fase?",
+    "opciones": {
+      "A": "Omeprazol oral como única terapia",
+      "B": "Profilaxis con ceftriaxona endovenosa",
+      "C": "Propranolol endovenoso en bolo",
+      "D": "Plasma fresco congelado a todo paciente"
+    },
+    "correcta": "B",
+    "explicacion": "En el cirrótico con hemorragia digestiva, la profilaxis antibiótica (ceftriaxona) reduce infecciones, resangrado y mortalidad; se suma al vasoactivo y a la ligadura endoscópica.",
+    "por_que_no": {
+      "A": "No controla el sangrado de várices ni reemplaza el manejo endoscópico.",
+      "C": "Los betabloqueantes se usan en profilaxis, no en el sangrado agudo con hipotensión.",
+      "D": "Corregir el INR con plasma no mejora el control del sangrado variceal."
+    },
+    "fuente": {
+      "documento": "Baveno VII. Renewing consensus in portal hypertension",
+      "anio": 2022,
+      "url": "https://www.journal-of-hepatology.eu/article/S0168-8278(21)02299-6/fulltext"
+    },
+    "estado": "validada_ia"
+  },
+  {
+    "id": "enam-0003",
+    "examen": "ENAM",
+    "area": "Medicina",
+    "tema": "Hipotiroidismo primario",
+    "dificultad": 1,
+    "tipo": "directa",
+    "enunciado": "Mujer de 50 años con fatiga, frío, estreñimiento y piel seca. ¿Qué perfil tiroideo confirma un hipotiroidismo primario?",
+    "opciones": {
+      "A": "TSH baja con T4 libre baja",
+      "B": "TSH baja con T4 libre elevada",
+      "C": "TSH elevada con T4 libre baja",
+      "D": "TSH elevada con T4 libre normal"
+    },
+    "correcta": "C",
+    "explicacion": "En el hipotiroidismo primario falla la glándula: la T4 libre baja y la hipófisis responde elevando la TSH.",
+    "por_que_no": {
+      "A": "Sugiere hipotiroidismo central (hipofisario o hipotalámico).",
+      "B": "Es el patrón del hipertiroidismo primario.",
+      "D": "Corresponde al hipotiroidismo subclínico."
+    },
+    "fuente": {
+      "documento": "ATA. Guidelines for the Treatment of Hypothyroidism",
+      "anio": 2014,
+      "url": "https://www.liebertpub.com/doi/10.1089/thy.2014.0028"
+    },
+    "estado": "validada_ia"
+  },
+  {
+    "id": "enam-0004",
+    "examen": "ENAM",
+    "area": "Pediatría",
+    "tema": "Ictericia neonatal",
+    "dificultad": 2,
+    "tipo": "directa",
+    "enunciado": "En un recién nacido a término, ¿qué característica de la ictericia obliga a estudiarla como patológica?",
+    "opciones": {
+      "A": "Aparición al tercer día en un niño sano",
+      "B": "Predominio leve de la bilirrubina indirecta",
+      "C": "Desaparición antes de cumplir dos semanas",
+      "D": "Aparición en las primeras 24 horas de vida"
+    },
+    "correcta": "D",
+    "explicacion": "La ictericia en las primeras 24 horas sugiere hemólisis (por ejemplo, incompatibilidad de grupo) y exige medir bilirrubina y estudiar la causa.",
+    "por_que_no": {
+      "A": "Es el momento típico de la ictericia fisiológica.",
+      "B": "La fisiológica también es de predominio indirecto.",
+      "C": "Es la evolución esperada de la ictericia fisiológica."
+    },
+    "fuente": {
+      "documento": "AAP Clinical Practice Guideline Revision: Management of Hyperbilirubinemia in the Newborn ≥35 Weeks",
+      "anio": 2022,
+      "url": "https://publications.aap.org/pediatrics/article/150/3/e2022058859/188726"
+    },
+    "estado": "validada_ia"
+  },
+  {
+    "id": "enam-0005",
+    "examen": "ENAM",
+    "area": "Pediatría",
+    "tema": "Laringotraqueítis (crup)",
+    "dificultad": 2,
+    "tipo": "caso_clinico",
+    "enunciado": "Niño de 2 años con tos perruna, disfonía y estridor en reposo desde la madrugada. Tiene tiraje leve, saturación 95 % y está febril. ¿Cuál es el tratamiento?",
+    "opciones": {
+      "A": "Dexametasona y adrenalina nebulizada",
+      "B": "Salbutamol inhalado y alta al hogar",
+      "C": "Amoxicilina oral por diez días",
+      "D": "Intubación orotraqueal de inmediato"
+    },
+    "correcta": "A",
+    "explicacion": "En el crup con estridor en reposo se indica corticoide (dexametasona) y adrenalina nebulizada, que reduce el edema subglótico en minutos.",
+    "por_que_no": {
+      "B": "El problema es la obstrucción de la vía aérea alta, no el broncoespasmo.",
+      "C": "El crup es viral; el antibiótico no está indicado.",
+      "D": "Se reserva para la falla respiratoria; este niño satura bien."
+    },
+    "fuente": {
+      "documento": "Cochrane. Glucocorticoids for croup in children",
+      "anio": 2018,
+      "url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD001955.pub4/full"
+    },
+    "estado": "validada_ia"
+  },
+  {
+    "id": "enam-0006",
+    "examen": "ENAM",
+    "area": "Pediatría",
+    "tema": "Desnutrición crónica",
+    "dificultad": 1,
+    "tipo": "directa",
+    "enunciado": "Según los patrones de crecimiento de la OMS, ¿qué indicador define desnutrición crónica en un niño menor de 5 años?",
+    "opciones": {
+      "A": "IMC para la edad mayor de +2 DE",
+      "B": "Talla para la edad menor de −2 DE",
+      "C": "Peso para la talla menor de −2 DE",
+      "D": "Peso para la edad menor de −1 DE"
+    },
+    "correcta": "B",
+    "explicacion": "La talla baja para la edad refleja un déficit nutricional prolongado: es el indicador de desnutrición crónica.",
+    "por_que_no": {
+      "A": "Indica sobrepeso u obesidad.",
+      "C": "Define desnutrición aguda (emaciación).",
+      "D": "Ese punto de corte no define desnutrición."
+    },
+    "fuente": {
+      "documento": "OMS. Patrones de crecimiento infantil",
+      "anio": 2006,
+      "url": "https://www.who.int/tools/child-growth-standards"
+    },
+    "estado": "validada_ia"
+  },
+  {
+    "id": "enam-0007",
+    "examen": "ENAM",
+    "area": "Emergencias",
+    "tema": "Anafilaxia",
+    "dificultad": 2,
+    "tipo": "caso_clinico",
+    "enunciado": "Varón de 30 años, minutos después de una picadura de abeja, presenta urticaria generalizada, sibilancias y PA 80/50 mmHg. ¿Cuál es el tratamiento de primera línea?",
+    "opciones": {
+      "A": "Clorfenamina EV como primera línea",
+      "B": "Adrenalina 0.5 mg IM en el muslo",
+      "C": "Adrenalina 1 mg SC en el brazo",
+      "D": "Hidrocortisona EV en bolo único"
+    },
+    "correcta": "B",
+    "explicacion": "La adrenalina intramuscular (0.01 mg/kg, máximo 0.5 mg en adultos) en la cara anterolateral del muslo es el tratamiento de primera línea; se repite cada 5 a 15 minutos si hace falta.",
+    "por_que_no": {
+      "A": "Los antihistamínicos alivian la piel, pero no revierten el choque.",
+      "C": "La vía subcutánea absorbe peor y esa dosis no es la indicada.",
+      "D": "Los corticoides actúan en horas y no son tratamiento inicial."
+    },
+    "fuente": {
+      "documento": "World Allergy Organization. Anaphylaxis guidance",
+      "anio": 2020,
+      "url": "https://www.worldallergyorganizationjournal.org/article/S1939-4551(20)30375-6/fulltext"
+    },
+    "estado": "validada_ia"
+  },
+  {
+    "id": "enam-0008",
+    "examen": "ENAM",
+    "area": "Emergencias",
+    "tema": "Paro cardiaco: ritmo desfibrilable",
+    "dificultad": 1,
+    "tipo": "caso_clinico",
+    "enunciado": "Durante la RCP de un adulto en paro, el monitor muestra fibrilación ventricular. ¿Cuál es la siguiente acción?",
+    "opciones": {
+      "A": "Desfibrilar y reanudar la RCP de inmediato",
+      "B": "Buscar pulso carotídeo durante 30 segundos",
+      "C": "Administrar amiodarona antes de la descarga",
+      "D": "Administrar atropina 1 mg endovenosa"
+    },
+    "correcta": "A",
+    "explicacion": "La fibrilación ventricular es un ritmo desfibrilable: descarga y reinicio inmediato de 2 minutos de compresiones de alta calidad.",
+    "por_que_no": {
+      "B": "La pausa para buscar pulso no debe pasar de 10 segundos.",
+      "C": "La amiodarona se da tras la tercera descarga, no antes de la primera.",
+      "D": "La atropina no forma parte del manejo del paro cardiaco."
+    },
+    "fuente": {
+      "documento": "AHA Guidelines for CPR and Emergency Cardiovascular Care",
+      "anio": 2020,
+      "url": "https://cpr.heart.org/en/resuscitation-science/cpr-and-ecc-guidelines"
+    },
+    "estado": "validada_ia"
+  },
+  {
+    "id": "enam-0009",
+    "examen": "ENAM",
+    "area": "Emergencias",
+    "tema": "Intoxicación por paracetamol",
+    "dificultad": 1,
+    "tipo": "caso_clinico",
+    "enunciado": "Mujer de 19 años ingirió 30 tabletas de paracetamol de 500 mg hace 4 horas. Está asintomática. ¿Cuál es el antídoto?",
+    "opciones": {
+      "A": "N-acetilcisteína",
+      "B": "Atropina endovenosa",
+      "C": "Naloxona endovenosa",
+      "D": "Flumazenil endovenoso"
+    },
+    "correcta": "A",
+    "explicacion": "La N-acetilcisteína repone glutatión y previene la necrosis hepática; es más eficaz en las primeras 8 horas tras la ingesta.",
+    "por_que_no": {
+      "B": "Se usa en intoxicación colinérgica.",
+      "C": "Revierte opioides.",
+      "D": "Revierte benzodiacepinas."
+    },
+    "fuente": {
+      "documento": "Goldfrank's Toxicologic Emergencies, 11.ª ed.",
+      "anio": 2019,
+      "url": ""
+    },
+    "estado": "validada_ia"
+  },
+  {
+    "id": "enam-0010",
+    "examen": "ENAM",
+    "area": "Ginecología y obstetricia",
+    "tema": "Rotura prematura de membranas pretérmino",
+    "dificultad": 3,
+    "tipo": "caso_clinico",
+    "enunciado": "Gestante de 29 semanas con rotura prematura de membranas de 3 días, sin contracciones, sin fiebre y con cérvix cerrado. Ya recibió corticoides y antibióticos. Si el parto se volviera inminente, ¿qué fármaco ofrece neuroprotección fetal?",
+    "opciones": {
+      "A": "Sulfato de magnesio antes del parto",
+      "B": "Amniocentesis seriadas semanales",
+      "C": "Nifedipino como tocólisis prolongada",
+      "D": "Progesterona vaginal diaria"
+    },
+    "correcta": "A",
+    "explicacion": "Ante parto inminente antes de las 32 semanas, el sulfato de magnesio reduce el riesgo de parálisis cerebral en el recién nacido.",
+    "por_que_no": {
+      "B": "No aportan protección neurológica fetal.",
+      "C": "La tocólisis prolongada no mejora el pronóstico en la rotura de membranas.",
+      "D": "Se usa para prevenir el parto pretérmino en otros contextos, no como neuroprotección."
+    },
+    "fuente": {
+      "documento": "ACOG Practice Bulletin 217. Prelabor Rupture of Membranes",
+      "anio": 2020,
+      "url": "https://www.acog.org/clinical/clinical-guidance/practice-bulletin/articles/2020/03/prelabor-rupture-of-membranes"
+    },
+    "estado": "validada_ia"
+  },
+  {
+    "id": "enam-0011",
+    "examen": "ENAM",
+    "area": "Ginecología y obstetricia",
+    "tema": "Diabetes gestacional",
+    "dificultad": 2,
+    "tipo": "directa",
+    "enunciado": "En una gestante sin diabetes previa, ¿cuándo y con qué prueba se hace el tamizaje de diabetes gestacional?",
+    "opciones": {
+      "A": "PTOG de 75 g en la semana 36 o después",
+      "B": "Hemoglobina glicada en el tercer trimestre",
+      "C": "PTOG de 75 g entre las 24 y 28 semanas",
+      "D": "Glucosa capilar al azar en cada control"
+    },
+    "correcta": "C",
+    "explicacion": "La prueba de tolerancia oral con 75 g de glucosa entre las semanas 24 y 28 es la estrategia recomendada para el tamizaje y diagnóstico.",
+    "por_que_no": {
+      "A": "Es tardía para intervenir y mejorar los resultados.",
+      "B": "No tiene sensibilidad suficiente para diabetes gestacional.",
+      "D": "No es una prueba válida de tamizaje."
+    },
+    "fuente": {
+      "documento": "ADA. Standards of Care in Diabetes, sección 15: Management of Diabetes in Pregnancy",
+      "anio": 2025,
+      "url": "https://diabetesjournals.org/care/issue/48/Supplement_1"
+    },
+    "estado": "validada_ia"
+  },
+  {
+    "id": "enam-0012",
+    "examen": "ENAM",
+    "area": "Cirugía",
+    "tema": "Colecistitis aguda",
+    "dificultad": 2,
+    "tipo": "caso_clinico",
+    "enunciado": "Mujer de 48 años con dolor en hipocondrio derecho de 24 horas, fiebre y Murphy positivo. Ecografía: vesícula con cálculos, pared de 6 mm y líquido perivesicular. Sin disfunción orgánica. ¿Cuál es el tratamiento de elección?",
+    "opciones": {
+      "A": "Antibiótico y cirugía en 3 meses",
+      "B": "Colecistostomía percutánea de urgencia",
+      "C": "CPRE con esfinterotomía urgente",
+      "D": "Colecistectomía laparoscópica temprana"
+    },
+    "correcta": "D",
+    "explicacion": "La colecistitis aguda leve a moderada en un paciente apto se trata con colecistectomía laparoscópica temprana, idealmente en la primera semana.",
+    "por_que_no": {
+      "A": "La cirugía diferida aumenta recurrencias y días de hospital.",
+      "B": "Se reserva para pacientes graves que no toleran la cirugía.",
+      "C": "Está indicada en colangitis o coledocolitiasis, no en colecistitis aislada."
+    },
+    "fuente": {
+      "documento": "Tokyo Guidelines 2018 (TG18): flowchart for the management of acute cholecystitis",
+      "anio": 2018,
+      "url": "https://onlinelibrary.wiley.com/doi/10.1002/jhbp.516"
+    },
+    "estado": "validada_ia"
+  },
+  {
+    "id": "enam-0013",
+    "examen": "ENAM",
+    "area": "Salud pública",
+    "tema": "Pruebas diagnósticas",
+    "dificultad": 1,
+    "tipo": "directa",
+    "enunciado": "¿Qué expresa la sensibilidad de una prueba diagnóstica?",
+    "opciones": {
+      "A": "La proporción de sanos con prueba negativa",
+      "B": "La probabilidad de enfermar si la prueba es positiva",
+      "C": "La proporción de enfermos con prueba positiva",
+      "D": "La proporción total de resultados correctos"
+    },
+    "correcta": "C",
+    "explicacion": "Sensibilidad = verdaderos positivos / total de enfermos. Una prueba muy sensible sirve para descartar la enfermedad cuando sale negativa.",
+    "por_que_no": {
+      "A": "Esa es la especificidad.",
+      "B": "Ese es el valor predictivo positivo.",
+      "D": "Esa es la exactitud de la prueba."
+    },
+    "fuente": {
+      "documento": "Gordis. Epidemiología, 6.ª ed.",
+      "anio": 2019,
+      "url": ""
+    },
+    "estado": "validada_ia"
+  },
+  {
+    "id": "enam-0014",
+    "examen": "ENAM",
+    "area": "Ética y legislación",
+    "tema": "Derechos del paciente",
+    "dificultad": 2,
+    "tipo": "caso_clinico",
+    "enunciado": "Varón de 40 años, lúcido y adecuadamente informado de los riesgos, rechaza una transfusión que no es de emergencia por motivos personales. ¿Cuál es la conducta correcta?",
+    "opciones": {
+      "A": "Darle el alta por negarse al tratamiento",
+      "B": "Respetar su decisión y documentarla",
+      "C": "Transfundir sin su consentimiento",
+      "D": "Pedir autorización a un familiar"
+    },
+    "correcta": "B",
+    "explicacion": "Un adulto capaz e informado puede rechazar un tratamiento. Se respeta su decisión, se documenta y se ofrecen alternativas.",
+    "por_que_no": {
+      "A": "Debe ofrecerse la mejor alternativa disponible, no abandonarlo.",
+      "C": "Vulnera su autonomía y el derecho al consentimiento informado.",
+      "D": "Un adulto capaz decide por sí mismo; el familiar no lo reemplaza."
+    },
+    "fuente": {
+      "documento": "Ley N.° 29414, que establece los derechos de las personas usuarias de los servicios de salud",
+      "anio": 2009,
+      "url": ""
+    },
+    "estado": "validada_ia"
+  },
+  {
+    "id": "enam-0015",
+    "examen": "ENAM",
+    "area": "Salud pública",
+    "tema": "Estudios epidemiológicos",
+    "dificultad": 1,
+    "tipo": "directa",
+    "enunciado": "En un estudio de casos y controles, ¿cuál es la medida de asociación adecuada?",
+    "opciones": {
+      "A": "Prevalencia de periodo",
+      "B": "Riesgo relativo (razón de riesgos)",
+      "C": "Odds ratio (razón de momios)",
+      "D": "Tasa de incidencia acumulada"
+    },
+    "correcta": "C",
+    "explicacion": "En los casos y controles se parte del efecto y se comparan exposiciones; por eso se calcula el odds ratio.",
+    "por_que_no": {
+      "A": "Es una medida de frecuencia, no de asociación.",
+      "B": "Requiere conocer la incidencia, propia de los estudios de cohorte.",
+      "D": "No se puede calcular porque se parte de los enfermos."
+    },
+    "fuente": {
+      "documento": "Gordis. Epidemiología, 6.ª ed.",
+      "anio": 2019,
+      "url": ""
+    },
+    "estado": "validada_ia"
+  },
+  {
+    "id": "ser-0001",
+    "examen": "SERUMS",
+    "area": "Enfermedades metaxénicas",
+    "tema": "Malaria por P. vivax",
+    "dificultad": 2,
+    "tipo": "directa",
+    "enunciado": "En el tratamiento de la malaria por Plasmodium vivax se añade primaquina a la cloroquina. ¿Cuál es el objetivo de la primaquina?",
+    "opciones": {
+      "A": "Potenciar la acción de la cloroquina",
+      "B": "Eliminar los hipnozoítos hepáticos",
+      "C": "Reducir la fiebre en las primeras 24 h",
+      "D": "Prevenir la anemia hemolítica del paciente"
+    },
+    "correcta": "B",
+    "explicacion": "P. vivax deja formas latentes en el hígado (hipnozoítos) que causan recaídas; la primaquina es la cura radical.",
+    "por_que_no": {
+      "A": "Actúan en fases distintas del ciclo del parásito.",
+      "C": "La fiebre cede con el esquema esquizonticida.",
+      "D": "La primaquina puede causar hemólisis en déficit de G6PD."
+    },
+    "fuente": {
+      "documento": "OMS. Guidelines for malaria",
+      "anio": 2023,
+      "url": "https://www.who.int/publications/i/item/guidelines-for-malaria"
+    },
+    "estado": "validada_ia"
+  },
+  {
+    "id": "ser-0002",
+    "examen": "SERUMS",
+    "area": "Enfermedades metaxénicas",
+    "tema": "Dengue con signos de alarma",
+    "dificultad": 2,
+    "tipo": "caso_clinico",
+    "enunciado": "Varón de 25 años en Piura con 4 días de fiebre. Hoy tiene dolor abdominal intenso, vómitos persistentes y hepatomegalia dolorosa. PA 110/70 mmHg. ¿Cuál es la conducta?",
+    "opciones": {
+      "A": "Tratamiento en casa con ibuprofeno",
+      "B": "Transfusión profiláctica de plaquetas",
+      "C": "Hospitalizar e hidratar por vía EV",
+      "D": "Alta con paracetamol y control en 72 h"
+    },
+    "correcta": "C",
+    "explicacion": "Dolor abdominal intenso, vómitos persistentes y hepatomegalia son signos de alarma: el paciente se hospitaliza y recibe cristaloides endovenosos con vigilancia estrecha.",
+    "por_que_no": {
+      "A": "Los AINE están contraindicados por el riesgo de sangrado.",
+      "B": "No está indicada y no previene el choque.",
+      "D": "Con signos de alarma el riesgo de choque es inminente."
+    },
+    "fuente": {
+      "documento": "OPS. Directrices para el diagnóstico clínico y el tratamiento del dengue, el chikunguña y el zika",
+      "anio": 2022,
+      "url": "https://iris.paho.org/handle/10665.2/55125"
+    },
+    "estado": "validada_ia"
+  },
+  {
+    "id": "ser-0003",
+    "examen": "SERUMS",
+    "area": "Zoonosis",
+    "tema": "Rabia: profilaxis posexposición",
+    "dificultad": 2,
+    "tipo": "caso_clinico",
+    "enunciado": "Niño de 8 años es mordido en la mejilla por un perro callejero que huyó. La herida es profunda. ¿Cuál es la profilaxis indicada?",
+    "opciones": {
+      "A": "Lavado, vacuna antirrábica e inmunoglobulina",
+      "B": "Solo vacuna antirrábica sin inmunoglobulina",
+      "C": "Solo lavado de la herida y observación",
+      "D": "Antibiótico oral y vacuna antitetánica"
+    },
+    "correcta": "A",
+    "explicacion": "Mordedura transdérmica en la cabeza por un animal no observable es exposición categoría III: lavado de la herida, vacuna e inmunoglobulina antirrábica.",
+    "por_que_no": {
+      "B": "En exposición categoría III se añade inmunoglobulina.",
+      "C": "Una mordedura profunda en la cara es exposición grave.",
+      "D": "Pueden necesitarse, pero no protegen contra la rabia."
+    },
+    "fuente": {
+      "documento": "OMS. Rabies vaccines: WHO position paper",
+      "anio": 2018,
+      "url": "https://www.who.int/publications/i/item/who-wer9316"
+    },
+    "estado": "validada_ia"
+  },
+  {
+    "id": "ser-0004",
+    "examen": "SERUMS",
+    "area": "Emergencias en APS",
+    "tema": "Mordedura de serpiente",
+    "dificultad": 1,
+    "tipo": "directa",
+    "enunciado": "Un agricultor es mordido por una serpiente en la selva. ¿Cuál de estas medidas está contraindicada?",
+    "opciones": {
+      "A": "Retirar anillos y objetos ajustados",
+      "B": "Trasladar para aplicar suero específico",
+      "C": "Inmovilizar el miembro afectado",
+      "D": "Aplicar torniquete y hacer incisión"
+    },
+    "correcta": "D",
+    "explicacion": "El torniquete, la incisión y la succión aumentan el daño local y no reducen el veneno circulante; se inmoviliza y se traslada para el antiveneno.",
+    "por_que_no": {
+      "A": "Es correcto: evita la compresión por el edema.",
+      "B": "Es lo indicado: el antiveneno es el tratamiento.",
+      "C": "Es una medida correcta: reduce la absorción del veneno."
+    },
+    "fuente": {
+      "documento": "OMS SEARO. Guidelines for the management of snakebites, 2.ª ed.",
+      "anio": 2016,
+      "url": "https://iris.who.int/handle/10665/249547"
+    },
+    "estado": "validada_ia"
+  },
+  {
+    "id": "ser-0005",
+    "examen": "SERUMS",
+    "area": "Epidemiología",
+    "tema": "Tasa de ataque",
+    "dificultad": 1,
+    "tipo": "directa",
+    "enunciado": "En un almuerzo comunal comieron 120 personas y 30 enfermaron de diarrea en las siguientes 24 horas. ¿Cuál es la tasa de ataque?",
+    "opciones": {
+      "A": "25 %",
+      "B": "75 %",
+      "C": "4 %",
+      "D": "30 %"
+    },
+    "correcta": "A",
+    "explicacion": "Tasa de ataque = enfermos / expuestos × 100 = 30 / 120 × 100 = 25 %.",
+    "por_que_no": {
+      "B": "Corresponde a quienes no enfermaron.",
+      "C": "Invierte el cálculo (120 / 30).",
+      "D": "Confunde el número de enfermos con el porcentaje."
+    },
+    "fuente": {
+      "documento": "Gordis. Epidemiología, 6.ª ed.",
+      "anio": 2019,
+      "url": ""
+    },
+    "estado": "validada_ia"
+  },
+  {
+    "id": "ser-0006",
+    "examen": "SERUMS",
+    "area": "Atención primaria",
+    "tema": "Declaración de Alma-Ata",
+    "dificultad": 1,
+    "tipo": "directa",
+    "enunciado": "¿Qué conferencia internacional definió la atención primaria de salud como estrategia para alcanzar la salud para todos?",
+    "opciones": {
+      "A": "Astaná, 2018",
+      "B": "Ottawa, 1986",
+      "C": "Ginebra, 1946",
+      "D": "Alma-Ata, 1978"
+    },
+    "correcta": "D",
+    "explicacion": "La Declaración de Alma-Ata (1978) definió la atención primaria de salud y la meta de salud para todos.",
+    "por_que_no": {
+      "A": "Renovó el compromiso con la APS 40 años después.",
+      "B": "Es la carta de promoción de la salud.",
+      "C": "Corresponde a la Constitución de la OMS."
+    },
+    "fuente": {
+      "documento": "OMS. Declaración de Alma-Ata",
+      "anio": 1978,
+      "url": "https://www.who.int/publications/i/item/WHO-EURO-1978-3938-43697-61471"
+    },
+    "estado": "validada_ia"
+  },
+  {
+    "id": "ser-0007",
+    "examen": "SERUMS",
+    "area": "Salud pública",
+    "tema": "Niveles de prevención",
+    "dificultad": 1,
+    "tipo": "directa",
+    "enunciado": "El tamizaje de cáncer de cuello uterino con inspección visual con ácido acético corresponde a:",
+    "opciones": {
+      "A": "Prevención primaria",
+      "B": "Prevención secundaria",
+      "C": "Promoción de la salud",
+      "D": "Prevención terciaria"
+    },
+    "correcta": "B",
+    "explicacion": "El tamizaje detecta la enfermedad en fase temprana y asintomática: es prevención secundaria.",
+    "por_que_no": {
+      "A": "Busca evitar la enfermedad, como la vacuna contra el VPH.",
+      "C": "Actúa sobre los determinantes, no sobre una enfermedad concreta.",
+      "D": "Reduce secuelas cuando la enfermedad ya está establecida."
+    },
+    "fuente": {
+      "documento": "Leavell y Clark. Niveles de prevención (Historia natural de la enfermedad)",
+      "anio": 1965,
+      "url": ""
+    },
+    "estado": "validada_ia"
+  },
+  {
+    "id": "ser-0008",
+    "examen": "SERUMS",
+    "area": "Salud materna",
+    "tema": "Atención prenatal",
+    "dificultad": 2,
+    "tipo": "directa",
+    "enunciado": "Según el modelo de atención prenatal de la OMS de 2016, ¿cuántos contactos mínimos debe tener una gestante?",
+    "opciones": {
+      "A": "Cuatro contactos",
+      "B": "Seis contactos",
+      "C": "Doce contactos",
+      "D": "Ocho contactos"
+    },
+    "correcta": "D",
+    "explicacion": "La OMS recomienda un mínimo de 8 contactos prenatales, con el primero antes de las 12 semanas.",
+    "por_que_no": {
+      "A": "Es el modelo anterior, reemplazado en 2016.",
+      "B": "No es el mínimo que recomienda el modelo de la OMS.",
+      "C": "Supera el mínimo recomendado para embarazos sin riesgo."
+    },
+    "fuente": {
+      "documento": "OMS. Recomendaciones sobre atención prenatal para una experiencia positiva del embarazo",
+      "anio": 2016,
+      "url": "https://iris.who.int/handle/10665/250800"
+    },
+    "estado": "validada_ia"
+  },
+  {
+    "id": "ser-0009",
+    "examen": "SERUMS",
+    "area": "Tuberculosis",
+    "tema": "Contactos de TB",
+    "dificultad": 2,
+    "tipo": "caso_clinico",
+    "enunciado": "Niña de 3 años, contacto domiciliario de su padre con TB pulmonar con baciloscopía positiva. Está asintomática, con examen físico y radiografía normales. ¿Qué corresponde?",
+    "opciones": {
+      "A": "Solo observación y control en seis meses",
+      "B": "Esquema completo para TB sensible",
+      "C": "Dar terapia preventiva para TB",
+      "D": "Vacuna BCG de refuerzo inmediata"
+    },
+    "correcta": "C",
+    "explicacion": "En contactos menores de 5 años, descartada la enfermedad activa, se indica terapia preventiva sin esperar pruebas de infección.",
+    "por_que_no": {
+      "A": "Los menores de 5 años contactos tienen alto riesgo de enfermar.",
+      "B": "No hay enfermedad activa; se indica terapia preventiva.",
+      "D": "La BCG no se usa como refuerzo ni previene la infección."
+    },
+    "fuente": {
+      "documento": "OMS. Consolidated guidelines on tuberculosis, Module 1: Prevention – TB preventive treatment",
+      "anio": 2024,
+      "url": "https://www.who.int/publications/i/item/9789240096196"
+    },
+    "estado": "validada_ia"
+  },
+  {
+    "id": "ser-0010",
+    "examen": "SERUMS",
+    "area": "Salud infantil",
+    "tema": "Neumonía: respiración rápida",
+    "dificultad": 2,
+    "tipo": "caso_clinico",
+    "enunciado": "Niño de 3 años con tos y fiebre de 2 días. Frecuencia respiratoria de 44 por minuto, sin tiraje ni signos de peligro. Según AIEPI, ¿cómo se clasifica su respiración?",
+    "opciones": {
+      "A": "Rápida: el umbral es 30 por minuto",
+      "B": "Normal: el umbral es 60 por minuto",
+      "C": "Rápida: el umbral es 40 por minuto",
+      "D": "Normal: el umbral es 50 por minuto"
+    },
+    "correcta": "C",
+    "explicacion": "Respiración rápida según edad: 60 o más en menores de 2 meses, 50 o más de 2 a 11 meses y 40 o más de 1 a 4 años.",
+    "por_que_no": {
+      "A": "No es el umbral para niños de 1 a 4 años.",
+      "B": "Ese umbral es para menores de 2 meses.",
+      "D": "Ese umbral es para lactantes de 2 a 11 meses."
+    },
+    "fuente": {
+      "documento": "OMS/UNICEF. Atención Integrada a las Enfermedades Prevalentes de la Infancia (AIEPI)",
+      "anio": 2014,
+      "url": ""
+    },
+    "estado": "validada_ia"
+  },
+  {
+    "id": "ser-0011",
+    "examen": "SERUMS",
+    "area": "Salud infantil",
+    "tema": "Anemia en niños",
+    "dificultad": 2,
+    "tipo": "caso_clinico",
+    "enunciado": "Niño de 18 meses que vive a nivel del mar tiene una hemoglobina de 10.2 g/dL. Según la OMS, ¿cómo se clasifica?",
+    "opciones": {
+      "A": "Anemia leve",
+      "B": "Sin anemia",
+      "C": "Anemia moderada",
+      "D": "Anemia severa"
+    },
+    "correcta": "A",
+    "explicacion": "En niños de 6 a 59 meses, la anemia leve va de 10.0 a 10.9 g/dL. En zonas de altura se ajusta la hemoglobina antes de clasificar.",
+    "por_que_no": {
+      "B": "En niños de 6 a 59 meses el punto de corte es 11.0 g/dL.",
+      "C": "Corresponde a valores de 7.0 a 9.9 g/dL.",
+      "D": "Corresponde a valores menores de 7.0 g/dL."
+    },
+    "fuente": {
+      "documento": "OMS. Guideline on haemoglobin cutoffs to define anaemia in individuals and populations",
+      "anio": 2024,
+      "url": "https://www.who.int/publications/i/item/9789240088542"
+    },
+    "estado": "validada_ia"
+  },
+  {
+    "id": "ser-0012",
+    "examen": "SERUMS",
+    "area": "Vigilancia epidemiológica",
+    "tema": "Parálisis flácida aguda",
+    "dificultad": 1,
+    "tipo": "directa",
+    "enunciado": "Un niño de 6 años presenta debilidad aguda en ambas piernas con reflejos disminuidos. ¿Cómo debe tratarse este caso en la vigilancia epidemiológica?",
+    "opciones": {
+      "A": "Notificar solo si se confirma polio",
+      "B": "Notificación inmediata como PFA",
+      "C": "No requiere notificación alguna",
+      "D": "Notificación semanal consolidada"
+    },
+    "correcta": "B",
+    "explicacion": "Todo caso de parálisis flácida aguda en menores de 15 años se notifica de inmediato y se investiga para mantener la vigilancia de poliomielitis.",
+    "por_que_no": {
+      "A": "Se notifica la sospecha, sin esperar confirmación.",
+      "C": "Todo caso en menores de 15 años se notifica.",
+      "D": "La parálisis flácida aguda es de notificación inmediata."
+    },
+    "fuente": {
+      "documento": "OPS. Vigilancia de la parálisis flácida aguda y erradicación de la poliomielitis",
+      "anio": 2017,
+      "url": ""
+    },
+    "estado": "validada_ia"
+  },
+  {
+    "id": "ser-0013",
+    "examen": "SERUMS",
+    "area": "Enfermedades no transmisibles",
+    "tema": "Diagnóstico de diabetes",
+    "dificultad": 1,
+    "tipo": "directa",
+    "enunciado": "En un adulto asintomático, ¿qué resultado confirma el diagnóstico de diabetes mellitus?",
+    "opciones": {
+      "A": "Una hemoglobina glicada de 5.9 % en dos tomas",
+      "B": "Dos glucosas en ayunas de 126 mg/dL o más",
+      "C": "Una glucosa en ayunas de 110 mg/dL",
+      "D": "Una glucosa al azar de 160 mg/dL"
+    },
+    "correcta": "B",
+    "explicacion": "En ausencia de síntomas, el diagnóstico requiere dos resultados alterados: glucosa en ayunas de 126 mg/dL o más, HbA1c de 6.5 % o más, o PTOG de 200 mg/dL o más.",
+    "por_que_no": {
+      "A": "Ese valor corresponde a prediabetes.",
+      "C": "Ese valor corresponde a glucosa alterada en ayunas.",
+      "D": "Sin síntomas, se requiere 200 o más y confirmación."
+    },
+    "fuente": {
+      "documento": "ADA. Standards of Care in Diabetes, sección 2: Diagnosis and Classification",
+      "anio": 2025,
+      "url": "https://diabetesjournals.org/care/issue/48/Supplement_1"
+    },
+    "estado": "validada_ia"
+  },
+  {
+    "id": "ser-0014",
+    "examen": "SERUMS",
+    "area": "Salud infantil",
+    "tema": "Lactancia materna",
+    "dificultad": 1,
+    "tipo": "directa",
+    "enunciado": "¿Hasta qué edad recomienda la OMS la lactancia materna exclusiva?",
+    "opciones": {
+      "A": "Hasta los 6 meses de edad",
+      "B": "Hasta los 12 meses de edad",
+      "C": "Hasta los 4 meses de edad",
+      "D": "Hasta los 2 meses de edad"
+    },
+    "correcta": "A",
+    "explicacion": "La OMS recomienda lactancia materna exclusiva durante los primeros 6 meses y continuarla con alimentación complementaria hasta los 2 años o más.",
+    "por_que_no": {
+      "B": "A partir de los 6 meses se inicia la alimentación complementaria.",
+      "C": "Es una recomendación antigua, ya superada.",
+      "D": "Es muy corta y no coincide con la recomendación."
+    },
+    "fuente": {
+      "documento": "OMS. Estrategia mundial para la alimentación del lactante y del niño pequeño",
+      "anio": 2003,
+      "url": "https://iris.who.int/handle/10665/42695"
+    },
+    "estado": "validada_ia"
+  },
+  {
+    "id": "ser-0015",
+    "examen": "SERUMS",
+    "area": "Salud materna",
+    "tema": "Referencia de emergencia obstétrica",
+    "dificultad": 2,
+    "tipo": "caso_clinico",
+    "enunciado": "En un puesto de salud I-1 llega una gestante de 36 semanas con PA 170/110 mmHg y cefalea intensa. ¿Cuál es la conducta adecuada?",
+    "opciones": {
+      "A": "Indicar reposo y control al día siguiente",
+      "B": "Referir sin iniciar ningún tratamiento",
+      "C": "Estabilizar con sulfato de Mg y referir",
+      "D": "Inducir el parto en el puesto de salud"
+    },
+    "correcta": "C",
+    "explicacion": "En un establecimiento de baja capacidad se estabiliza (sulfato de magnesio y antihipertensivo) y se refiere a un establecimiento con capacidad resolutiva, con acompañamiento.",
+    "por_que_no": {
+      "A": "La preeclampsia severa puede evolucionar a eclampsia en horas.",
+      "B": "Se debe estabilizar antes y durante el traslado.",
+      "D": "Un I-1 no tiene capacidad resolutiva para esta emergencia."
+    },
+    "fuente": {
+      "documento": "MINSA. Guías de práctica clínica para la atención de las emergencias obstétricas según nivel de capacidad resolutiva (RM 695-2006/MINSA)",
+      "anio": 2007,
+      "url": ""
+    },
+    "estado": "validada_ia"
+  }
+]
