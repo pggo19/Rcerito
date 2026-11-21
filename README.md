@@ -41,7 +41,16 @@ npx cap open android   # luego Build > Build APK(s)
 
 ## Preguntas
 
-Formato en `docs/formato_preguntas.md`. Para añadir preguntas de prueba edita `content/fuente_preguntas.py` y corre:
+Estándar completo (4 alternativas, taxonomía por examen, prompt para la IA y carga) en [`docs/ESTANDAR_PREGUNTAS.md`](docs/ESTANDAR_PREGUNTAS.md).
+
+Para validar y cargar un lote generado por IA:
+
+```bash
+python3 content/importar.py lote.json            # valida
+python3 content/importar.py lote.json --sql      # genera SQL para el SQL Editor de Supabase
+```
+
+Para añadir preguntas de prueba incluidas en el APK edita `content/fuente_preguntas.py` y corre:
 
 ```bash
 python3 content/build_questions.py

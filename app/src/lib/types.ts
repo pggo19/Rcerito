@@ -4,6 +4,7 @@ export interface Question {
   id: string
   examen: ExamCode
   area: string
+  subarea: string
   tema: string
   dificultad: 1 | 2 | 3
   tipo: 'caso_clinico' | 'directa'

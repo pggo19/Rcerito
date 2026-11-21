@@ -17,7 +17,7 @@
 
 - Inicio de sesión (Google) y sincronizar el progreso con la nube. Hoy el progreso vive en el teléfono.
 - Cobro real con Google Play Billing y validación de compras en el servidor.
-- Banco real de preguntas (miles) con el flujo de validación de `formato_preguntas.md`.
+- Banco real de preguntas (miles) con el flujo de `ESTANDAR_PREGUNTAS.md` (importador listo en `content/importar.py`).
 - Revisión médica de las 45 preguntas de prueba.
 - Ícono, pantalla de inicio (splash) y ficha de Play Store.
 - Política de privacidad y términos.

@@ -1,4 +1,5 @@
 import bundled from '../data/questions.json'
+import taxo from '../data/taxonomia.json'
 import { supabase } from './supabase'
 import type { ExamCode, Lesson, Question } from './types'
 
@@ -10,7 +11,7 @@ export async function loadQuestions(): Promise<{ questions: Question[]; source: 
     const res = await Promise.race([
       supabase
         .from('questions')
-        .select('id, examen:exam, area, tema, dificultad, tipo, enunciado, opciones, correcta, explicacion, por_que_no, fuente, estado')
+        .select('id, examen:exam, area, subarea, tema, dificultad, tipo, enunciado, opciones, correcta, explicacion, por_que_no, fuente, estado')
         .limit(5000),
       new Promise<never>((_, reject) => setTimeout(() => reject(new Error('timeout')), 4000)),
     ])
@@ -29,8 +30,11 @@ export function buildLessons(questions: Question[], exam: ExamCode): Lesson[] {
     list.push(q)
     byArea.set(q.area, list)
   }
+  // las salas siguen el orden de la tabla de especificaciones / bloques temáticos
+  const order = Object.keys((taxo.taxonomia as Record<string, Record<string, string[]>>)[exam] ?? {})
+  const rank = (a: string) => (order.includes(a) ? order.indexOf(a) : order.length)
   const lessons: Lesson[] = []
-  for (const [area, list] of byArea) {
+  for (const [area, list] of [...byArea].sort((a, b) => rank(a[0]) - rank(b[0]))) {
     list.sort((a, b) => a.dificultad - b.dificultad || a.id.localeCompare(b.id))
     for (let i = 0; i < list.length; i += LESSON_SIZE) {
       const index = i / LESSON_SIZE

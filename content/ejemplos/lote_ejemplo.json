@@ -1,0 +1,60 @@
+[
+  {
+    "id": "ess-ejemplo-001",
+    "examen": "ESSALUD",
+    "area": "Medicina",
+    "subarea": "Endocrino y metabolismo",
+    "tema": "Cetoacidosis diabética",
+    "dificultad": 2,
+    "tipo": "caso_clinico",
+    "enunciado": "Varón de 19 años con diabetes tipo 1 llega con vómitos, dolor abdominal y respiración de Kussmaul. Glucosa 480 mg/dL, pH 7.12, HCO3 9 mEq/L, K 4.8 mEq/L, cetonemia positiva. PA 95/60 mmHg. ¿Cuál es la primera medida terapéutica?",
+    "opciones": {
+      "A": "Potasio oral y control de glucosa en 2 h",
+      "B": "Bicarbonato de sodio endovenoso en infusión",
+      "C": "Insulina regular en bolo antes de hidratar",
+      "D": "Cloruro de sodio 0.9 % en bolo endovenoso"
+    },
+    "correcta": "D",
+    "explicacion": "En la cetoacidosis la prioridad es reponer el volumen con cristaloides isotónicos; la insulina en infusión se inicia después, con potasio mayor de 3.5 mEq/L.",
+    "por_que_no": {
+      "A": "Es una emergencia con depleción de volumen; el manejo es endovenoso y en hospital.",
+      "B": "El bicarbonato no se indica con pH mayor de 6.9; no mejora el pronóstico.",
+      "C": "La insulina sin reponer volumen empeora la hipotensión y puede bajar el potasio; primero se hidrata."
+    },
+    "fuente": {
+      "documento": "ADA/EASD/JBDS/AACE/DTS. Hyperglycemic crises in adults with diabetes: a consensus report",
+      "anio": 2024,
+      "url": "https://diabetesjournals.org/care/article/47/8/1257/156808"
+    },
+    "estado": "borrador"
+  },
+  {
+    "id": "enam-ejemplo-001",
+    "examen": "ENAM",
+    "area": "Medicina",
+    "subarea": "Digestivo",
+    "tema": "Hemorragia variceal",
+    "dificultad": 3,
+    "tipo": "caso_clinico",
+    "enunciado": "Varón de 55 años con cirrosis alcohólica presenta hematemesis abundante. FC 118 por minuto, PA 90/60 mmHg. Ya se inició reanimación con cristaloides y octreotide. ¿Qué otra medida reduce la mortalidad en esta fase?",
+    "opciones": {
+      "A": "Omeprazol oral como única terapia",
+      "B": "Profilaxis con ceftriaxona endovenosa",
+      "C": "Propranolol endovenoso en bolo",
+      "D": "Plasma fresco congelado a todo paciente"
+    },
+    "correcta": "B",
+    "explicacion": "En el cirrótico con hemorragia digestiva, la profilaxis antibiótica (ceftriaxona) reduce infecciones, resangrado y mortalidad; se suma al vasoactivo y a la ligadura endoscópica.",
+    "por_que_no": {
+      "A": "No controla el sangrado de várices ni reemplaza el manejo endoscópico.",
+      "C": "Los betabloqueantes se usan en profilaxis, no en el sangrado agudo con hipotensión.",
+      "D": "Corregir el INR con plasma no mejora el control del sangrado variceal."
+    },
+    "fuente": {
+      "documento": "Baveno VII. Renewing consensus in portal hypertension",
+      "anio": 2022,
+      "url": "https://www.journal-of-hepatology.eu/article/S0168-8278(21)02299-6/fulltext"
+    },
+    "estado": "borrador"
+  }
+]

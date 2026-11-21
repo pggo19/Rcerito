@@ -34,7 +34,7 @@ export function QuestionView({ question: q, onAnswer, onNext, onReport, nextLabe
   return (
     <div className="question">
       <p className="q-topic">
-        <span className="chip">{q.area}</span> <span className="q-tema">{q.tema}</span>
+        <span className="chip">{q.subarea ?? q.area}</span> <span className="q-tema">{q.tema}</span>
       </p>
       <div className="historia px">
         <p>{q.enunciado}</p>

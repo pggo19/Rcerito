@@ -1,0 +1,203 @@
+{
+  "taxonomia": {
+    "ESSALUD": {
+      "Medicina": [
+        "Infecciosas",
+        "Respiratorio",
+        "Cardiovascular",
+        "Digestivo",
+        "Neurología",
+        "Endocrino y metabolismo",
+        "Reumatología",
+        "Salud mental",
+        "Nefrología",
+        "Dermatología",
+        "Hematología"
+      ],
+      "Pediatría": [
+        "Neonatología",
+        "Niño y adolescente",
+        "Emergencias pediátricas",
+        "Ética en pediatría"
+      ],
+      "Emergencias y cuidados críticos": [
+        "Paro cardiorrespiratorio",
+        "Shock",
+        "Falla respiratoria",
+        "Falla renal",
+        "Falla hepática",
+        "Falla endocrina",
+        "Falla neurológica",
+        "Trauma",
+        "Medio interno",
+        "Intoxicaciones"
+      ],
+      "Cirugía": [
+        "Cirugía general",
+        "Traumatología",
+        "Urología",
+        "Oftalmología",
+        "Otorrinolaringología",
+        "Tórax y cardiovascular",
+        "Neurocirugía",
+        "Cirugía pediátrica",
+        "Quemados"
+      ],
+      "Ginecología y obstetricia": [
+        "Ginecología",
+        "Obstetricia",
+        "Ética en ginecoobstetricia"
+      ],
+      "Salud pública": [
+        "Salud comunitaria",
+        "Promoción y prevención",
+        "Bioestadística y epidemiología"
+      ],
+      "Ciencias básicas": [
+        "Morfológicas",
+        "Dinámicas"
+      ],
+      "Ética, investigación y gestión": [
+        "Ética",
+        "Investigación",
+        "Gestión"
+      ]
+    },
+    "ENAM": {
+      "Medicina": [
+        "Infecciosas",
+        "Respiratorio",
+        "Cardiovascular",
+        "Digestivo",
+        "Neurología",
+        "Endocrino y metabolismo",
+        "Reumatología",
+        "Salud mental",
+        "Nefrología",
+        "Dermatología",
+        "Hematología"
+      ],
+      "Pediatría": [
+        "Neonatología",
+        "Niño y adolescente",
+        "Emergencias pediátricas",
+        "Ética en pediatría"
+      ],
+      "Emergencias y cuidados críticos": [
+        "Paro cardiorrespiratorio",
+        "Shock",
+        "Falla respiratoria",
+        "Falla renal",
+        "Falla hepática",
+        "Falla endocrina",
+        "Falla neurológica",
+        "Trauma",
+        "Medio interno",
+        "Intoxicaciones"
+      ],
+      "Cirugía": [
+        "Cirugía general",
+        "Traumatología",
+        "Urología",
+        "Oftalmología",
+        "Otorrinolaringología",
+        "Tórax y cardiovascular",
+        "Neurocirugía",
+        "Cirugía pediátrica",
+        "Quemados"
+      ],
+      "Ginecología y obstetricia": [
+        "Ginecología",
+        "Obstetricia",
+        "Ética en ginecoobstetricia"
+      ],
+      "Salud pública": [
+        "Salud comunitaria",
+        "Promoción y prevención",
+        "Bioestadística y epidemiología"
+      ],
+      "Ciencias básicas": [
+        "Morfológicas",
+        "Dinámicas"
+      ],
+      "Ética, investigación y gestión": [
+        "Ética",
+        "Investigación",
+        "Gestión"
+      ]
+    },
+    "SERUMS": {
+      "Salud pública": [
+        "Conceptos básicos",
+        "Epidemiología",
+        "Bioestadística",
+        "Vigilancia epidemiológica",
+        "Determinantes de la salud",
+        "Promoción de la salud",
+        "Promoción y prevención",
+        "Salud ocupacional"
+      ],
+      "Cuidado integral de salud": [
+        "Atención primaria de salud",
+        "Salud materna",
+        "Salud infantil",
+        "Salud del adolescente",
+        "Salud del adulto y adulto mayor",
+        "Enfermedades metaxénicas",
+        "Zoonosis",
+        "Tuberculosis",
+        "VIH e ITS",
+        "Enfermedades no transmisibles",
+        "Salud mental",
+        "Emergencias en el primer nivel",
+        "Inmunizaciones"
+      ],
+      "Ética e interculturalidad": [
+        "Ética y deontología",
+        "Derechos en salud",
+        "Interculturalidad"
+      ],
+      "Investigación": [
+        "Metodología",
+        "Diseños de estudio",
+        "Ética en investigación"
+      ],
+      "Gestión de servicios de salud": [
+        "Sistema de salud",
+        "Referencia y contrarreferencia",
+        "Calidad",
+        "Planificación",
+        "Aseguramiento"
+      ]
+    }
+  },
+  "reparto": {
+    "ENAM": {
+      "Medicina": 22,
+      "Pediatría": 19,
+      "Emergencias y cuidados críticos": 9,
+      "Cirugía": 17,
+      "Ginecología y obstetricia": 17,
+      "Salud pública": 8,
+      "Ciencias básicas": 5,
+      "Ética, investigación y gestión": 3
+    },
+    "ESSALUD": {
+      "Medicina": 22,
+      "Pediatría": 19,
+      "Emergencias y cuidados críticos": 9,
+      "Cirugía": 17,
+      "Ginecología y obstetricia": 17,
+      "Salud pública": 8,
+      "Ciencias básicas": 5,
+      "Ética, investigación y gestión": 3
+    },
+    "SERUMS": {
+      "Salud pública": 30,
+      "Cuidado integral de salud": 40,
+      "Ética e interculturalidad": 10,
+      "Investigación": 10,
+      "Gestión de servicios de salud": 10
+    }
+  }
+}

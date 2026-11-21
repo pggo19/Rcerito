@@ -42,7 +42,7 @@ export function Building({ exam }: { exam: ExamCode }) {
                 <span className="room-body">
                   <span className="room-name">{l.area}</span>
                   <span className="room-meta">
-                    {d ? `Mejor puntaje: ${d.best} de ${d.total}` : `${l.questions.length} preguntas`}
+                    {d ? `Mejor puntaje: ${d.best} de ${d.total}` : `${l.questions.length} ${l.questions.length === 1 ? "pregunta" : "preguntas"}`}
                   </span>
                 </span>
               </button>
