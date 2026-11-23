@@ -15,6 +15,9 @@ export const PAL: Record<string, string> = {
   a: '#49B6C6', // gema
   s: '#8FA3AD', // gris metal
   p: '#F7B7C5', // rosado
+  v: '#7A4E9E', // morado (amenazas)
+  l: '#8DBF4E', // lima (toxinas)
+  r: '#B5532F', // ladrillo
 }
 
 export type Sprite = string[]
@@ -79,6 +82,215 @@ export const FLAME: Sprite = ['...k...', '..kok..', '.kook..', '.koyok.', 'koyyy
 export const BOLT: Sprite = ['...kkk.', '..kyyk.', '.kyyk..', 'kyyyyk.', '.kkyyk.', '..kyk..', '.kyk...', '.kk....']
 export const LOCK: Sprite = ['.kkkkk.', '.ks..sk', '.ks..sk', 'kkkkkkk', 'kyyyyyk', 'kyykyyk', 'kyykyyk', 'kkkkkkk']
 export const MEDAL: Sprite = ['kmk.kmk', 'kmk.kmk', '.kmkmk.', '..kkk..', '.kyyyk.', 'kyywyyk', 'kyyyyyk', '.kyyyk.', '..kkk..']
+
+// Amenazas de las batallas y fondos de misión (16×16)
+export const AMENAZA_VIRUS: Sprite = [
+  '......kkkk......',
+  '..kk.kvvvvk.kk..',
+  '.kvvkvvvvvvkvvk.',
+  '.kvvvvvvvvvvvvk.',
+  '..kvvvvvvvvvvk..',
+  '.kvvwwkvvkwwvvk.',
+  'kvvvwkkvvkkwvvvk',
+  'kvvvvvvvvvvvvvvk',
+  'kvvvvvkkkkvvvvvk',
+  '.kvvvkmmmmkvvvk.',
+  '.kvvvvkkkkvvvvk.',
+  '..kvvvvvvvvvvk..',
+  '.kvvkvvvvvvkvvk.',
+  '.kvvk.kvvk.kvvk.',
+  '..kk..kvvk..kk..',
+  '......kkkk......',
+]
+
+export const AMENAZA_TOXINA: Sprite = [
+  '.....kkkkkk.....',
+  '.....kssssk.....',
+  '......kssk......',
+  '......kllk......',
+  '.....kllllk.....',
+  '....kllllllk....',
+  '...kllkkkkllk...',
+  '..kllkwwwwkllk..',
+  '..klkwkwwkwkllk.',
+  '.kllkwwwwwwkllk.',
+  '.kllkkwkkwkkllk.',
+  '.klllkwwwwklllk.',
+  '.kllllkkkkllllk.',
+  '.kllllllllllllk.',
+  '..kllllllllllk..',
+  '...kkkkkkkkkk...',
+]
+
+export const AMENAZA_BACTERIA: Sprite = [
+  '................',
+  '...kkkkkkkkkk...',
+  '..koooooooooook.',
+  '.kooywooooywook.',
+  '.koowkooooowkook',
+  'kooooooooooooook',
+  'koooookkkkooooko',
+  'kooookmmmmkooook',
+  '.koooookkkooook.',
+  '.kooooooooooook.',
+  '..kkkkkkkkkkkkk.',
+  '..k..k..k..k..k.',
+  '.k..k..k..k..k..',
+  '................',
+  '................',
+  '................',
+]
+
+export const ESCOMBROS: Sprite = [
+  '................',
+  '..kkkkkkkkkkkk..',
+  '..krrkrrrkrrrk..',
+  '..kkkkkkkkkkkk..',
+  '..krrrkrrrkrrk..',
+  '..kkkkkkk.kkkk..',
+  '..krrkrk...rrk..',
+  '..kkkkk.....kk..',
+  '......k.........',
+  '.....k..kk......',
+  '...kkk.krrk.....',
+  '...krk.kkkk..kk.',
+  '...kkk......krk.',
+  '.kkkkkkkkkkkkkk.',
+  '.kssssssssssssk.',
+  '.kkkkkkkkkkkkkk.',
+]
+
+export const PACIENTE: Sprite = [
+  '................',
+  '......kkkk......',
+  '.....kddddk.....',
+  '....kdccccdk....',
+  '....kckcckck....',
+  '....kcccccck....',
+  '.....kcmmck.....',
+  '......kkkk......',
+  '....kaaaaaak....',
+  '...kaawaawaak...',
+  '...kaaaaaaaak...',
+  '...kckaaaakck...',
+  '....kaaaaaak....',
+  '....kaak.kaak...',
+  '....kcck.kcck...',
+  '....kkkk.kkkk...',
+]
+
+export const CRONO: Sprite = [
+  '.....kkkkkk.....',
+  '...kkyyyyyykk...',
+  '..kyywwwwwwyyk..',
+  '.kywwwwkwwwwwyk.',
+  '.kywwwwkwwwwwyk.',
+  'kywwwwwkwwwwwwyk',
+  'kywwwwwkwwwwwwyk',
+  'kywwwwwkkkkwwwyk',
+  'kywwwwwwwwwwwwyk',
+  'kywwwwwwwwwwwwyk',
+  '.kywwwwwwwwwwyk.',
+  '.kywwwwwwwwwwyk.',
+  '..kyywwwwwwyyk..',
+  '...kkyyyyyykk...',
+  '.....kkkkkk.....',
+  '................',
+]
+
+// Insignias (9×9)
+export const ESCUDO: Sprite = [
+  'kkkkkkkkk',
+  'ktttytttk',
+  'ktttytttk',
+  'kyyyyyyyk',
+  'ktttytttk',
+  '.kttyttk.',
+  '.kttyttk.',
+  '..kkykk..',
+  '...kkk...',
+]
+
+export const ESTRELLA: Sprite = [
+  '....k....',
+  '...kyk...',
+  'kkkyyykkk',
+  'kyyyyyyyk',
+  '.kyyyyyk.',
+  '..kyyyk..',
+  '.kyykyyk.',
+  '.kyk.kyk.',
+  '.kk...kk.',
+]
+
+export const OJO: Sprite = [
+  '.........',
+  '..kkkkk..',
+  '.kwwkwwk.',
+  'kwwkakwwk',
+  'kwkaaakwk',
+  'kwwkakwwk',
+  '.kwwkwwk.',
+  '..kkkkk..',
+  '.........',
+]
+
+export const MARTILLO: Sprite = [
+  'kkkkkkk..',
+  'ksssssk..',
+  'ksssssk..',
+  'kkkbkkk..',
+  '...kbk...',
+  '...kbk...',
+  '...kbk...',
+  '...kbk...',
+  '...kkk...',
+]
+
+export const GRIETA: Sprite = [
+  'kkkkkkkkk',
+  'krrrkrrrk',
+  'krrk.krrk',
+  'kkk..kkkk',
+  '...k.....',
+  '..k..k...',
+  '...k..k..',
+  '..k...k..',
+  '.........',
+]
+
+export const BANDERA: Sprite = [
+  'kk.......',
+  'kwkkkkk..',
+  'kwwwwwwk.',
+  'kwwwwwwk.',
+  'kwkkkkk..',
+  'kk.......',
+  'kk.......',
+  'kk.......',
+  'kk.......',
+]
+
+export const NUBE: Sprite = [
+  '...kkk...',
+  '.kkwwwkk.',
+  'kwwwwwwwk',
+  'kwwwwwwwk',
+  '.kkkkkkk.',
+  '..a..a...',
+  '.a..a..a.',
+  '..a..a...',
+  '.........',
+]
+
+// Incidentes (9×9)
+export const HOJA: Sprite = ['kkkkkkk..', 'kwwwwwkk.', 'kwkkkwwkk', 'kwwwwwwwk', 'kwkkkkkwk', 'kwwwwwwwk', 'kwkkkkkwk', 'kwwwwwwwk', 'kkkkkkkkk']
+export const HOJA_X: Sprite = ['kkkkkkk..', 'kwwwwwkk.', 'kwmwwwmkk', 'kwwmwmwwk', 'kwwwmwwwk', 'kwwmwmwwk', 'kwmwwwmwk', 'kwwwwwwwk', 'kkkkkkkkk']
+export const CARA_ENOJADA: Sprite = ['..kkkkk..', '.kmmmmmk.', 'kmkmmmkmk', 'kmmkmkmmk', 'kmwkmkwmk', 'kmmmmmmmk', 'kmmkkkmmk', '.kkmmmkk.', '..kkkkk..']
+export const ENFERMERA: Sprite = ['..kkkkk..', '.kwwmwwk.', 'kwwmmmwwk', 'kkkkkkkkk', 'kckcccckk', 'kcckcckck', 'kccccccck', 'kcckkkcck', '.kkkkkkk.']
+export const PUERTA: Sprite = ['kkkkkkkkk', 'kbbbbbbbk', 'kbkkkkkbk', 'kbkdddkbk', 'kbkddykbk', 'kbkdddkbk', 'kbkdddkbk', 'kbkdddkbk', 'kkkkkkkkk']
+export const GOTA: Sprite = ['....k....', '...kak...', '..kaaak..', '.kaawaak.', '.kawaaak.', 'kaaaaaaak', 'kaaaaaaak', '.kaaaaak.', '..kkkkk..']
+export const BOTIQUIN: Sprite = ['...kkk...', '..k...k..', 'kkkkkkkkk', 'kwwwmwwwk', 'kwwmmmwwk', 'kwwwmwwwk', 'kwwwwwwwk', 'kgggggggk', 'kkkkkkkkk']
 
 export function spriteToDataURL(sprite: Sprite, scale = 4, flip = false): string {
   const h = sprite.length

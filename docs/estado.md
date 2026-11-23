@@ -1,4 +1,4 @@
-# Estado del proyecto (21 nov 2026)
+# Estado del proyecto (23 nov 2026)
 
 ## Funciona
 
@@ -10,14 +10,16 @@
 - Simulacro con tiempo, puntaje sobre 100, resultado por área y revisión de errores.
 - Perfil tipo carnet, medallas y precisión por examen.
 - Pantalla Pro con planes en soles (cobro simulado; hay un interruptor de prueba).
-- Preguntas desde Supabase con copia local si no hay red. 45 preguntas de prueba (15 por examen).
+- Preguntas desde Supabase con copia local si no hay red. Copia incluida: 45 de prueba + 360 del banco del Drive (120 por examen, lotes 188–191).
+- Eventos al entrar a cada edificio: emergencia diaria (defender / huir / mochila), desafío del día, paciente en el pasillo, incidentes propios de cada escenario y misiones para remediarlos. Insignias buenas y rojas en el perfil. Ver `EVENTOS.md`.
+- Ícono de Android y splash con Uku joven en 3D (fondo morado). Ícono de 512 px para la ficha en `assets/play/`.
 - Proyecto Android (Capacitor) y workflow que compila un APK de prueba en GitHub Actions.
 
 ## Falta
 
 - Inicio de sesión (Google) y sincronizar el progreso con la nube. Hoy el progreso vive en el teléfono.
 - Cobro real con Google Play Billing y validación de compras en el servidor.
-- Banco real de preguntas (miles) con el flujo de `ESTANDAR_PREGUNTAS.md` (importador listo en `content/importar.py`).
+- Subir a Supabase las ~20 mil preguntas del Drive con `content/importar.py` (ya traduce los nombres de área del Drive, p. ej. "Medicina Interna" → "Medicina"; la subárea libre queda como aviso, no como error).
 - Revisión médica de las 45 preguntas de prueba.
 - Ícono, pantalla de inicio (splash) y ficha de Play Store.
 - Política de privacidad y términos.

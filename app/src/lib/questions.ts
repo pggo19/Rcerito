@@ -16,7 +16,10 @@ export async function loadQuestions(): Promise<{ questions: Question[]; source: 
       new Promise<never>((_, reject) => setTimeout(() => reject(new Error('timeout')), 4000)),
     ])
     if (res.error || !res.data?.length) throw res.error ?? new Error('vacío')
-    return { questions: res.data as unknown as Question[], source: 'nube' }
+    // la nube manda; la copia local completa lo que aún no se ha subido
+    const cloud = res.data as unknown as Question[]
+    const ids = new Set(cloud.map((q) => q.id))
+    return { questions: [...cloud, ...(bundled as unknown as Question[]).filter((q) => !ids.has(q.id))], source: 'nube' }
   } catch {
     return { questions: bundled as unknown as Question[], source: 'local' }
   }

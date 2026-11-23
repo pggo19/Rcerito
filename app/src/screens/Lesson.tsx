@@ -59,13 +59,15 @@ export function LessonScreen({ lessonId }: { lessonId: string }) {
   const finish = () => {
     const perfect = ok === total
     update((s) => {
+      // con un incidente pendiente en el edificio, la mitad de gemas hasta remediarlo
+      const factor = s.incidentes[lesson.exam] ? 0.5 : 1
       const prev = s.done[lesson.id]
       const done = { ...s.done, [lesson.id]: { best: Math.max(prev?.best ?? 0, ok), total } }
       let next = touchStreak({
         ...s,
         done,
         xp: s.xp + (perfect ? 5 : 0),
-        gems: s.gems + 2 + (perfect ? 3 : 0),
+        gems: s.gems + Math.floor((2 + (perfect ? 3 : 0)) * factor),
         practiceLeft: practice ? Math.max(0, s.practiceLeft - 1) : s.practiceLeft,
       })
       const list = lessons[lesson.exam]
@@ -97,7 +99,7 @@ export function LessonScreen({ lessonId }: { lessonId: string }) {
           </div>
           <div className="px">
             <dt>Gemas</dt>
-            <dd>+{2 + (ok === total ? 3 : 0)}</dd>
+            <dd>+{Math.floor((2 + (ok === total ? 3 : 0)) * (state.incidentes[lesson.exam] ? 0.5 : 1))}</dd>
           </div>
         </dl>
         {state.medals.includes(lesson.exam) && <p className="medal-note">Tienes la medalla de {examInfo(lesson.exam).building}.</p>}

@@ -11,9 +11,11 @@ interface Props {
   onNext: () => void
   onReport: (motivo: string) => void
   nextLabel?: string
+  /** letras descartadas por un ítem (50/50): se ven tachadas y no se pueden elegir */
+  hidden?: string[]
 }
 
-export function QuestionView({ question: q, onAnswer, onNext, onReport, nextLabel = 'Continuar' }: Props) {
+export function QuestionView({ question: q, onAnswer, onNext, onReport, nextLabel = 'Continuar', hidden = [] }: Props) {
   const [chosen, setChosen] = useState<string | null>(null)
   const [reporting, setReporting] = useState(false)
   const [reported, setReported] = useState(false)
@@ -41,10 +43,11 @@ export function QuestionView({ question: q, onAnswer, onNext, onReport, nextLabe
       </div>
       <ol className="options" aria-label="Opciones">
         {letters.map((l) => {
-          const state = !answered ? '' : l === q.correcta ? 'is-correct' : l === chosen ? 'is-wrong' : 'is-dim'
+          const gone = hidden.includes(l) && !answered
+          const state = gone ? 'is-gone' : !answered ? '' : l === q.correcta ? 'is-correct' : l === chosen ? 'is-wrong' : 'is-dim'
           return (
             <li key={l}>
-              <button type="button" className={`option px ${state}`} onClick={() => pick(l)} disabled={answered} aria-pressed={chosen === l}>
+              <button type="button" className={`option px ${state}`} onClick={() => pick(l)} disabled={answered || gone} aria-pressed={chosen === l} aria-label={gone ? `${l}: descartada` : undefined}>
                 <span className="option-letter">{l}</span>
                 <span className="option-text">{q.opciones[l]}</span>
               </button>

@@ -24,6 +24,42 @@ export interface GameState {
   sims: Record<ExamCode, number>
   medals: ExamCode[]
   reports: { qid: string; motivo: string; at: number }[]
+  /** eventos del día al entrar a cada edificio (se reinician a medianoche) */
+  ev: DayEvents
+  /** incidente pendiente en cada edificio (techo caído, historia perdida, enfermera enojada…) */
+  incidentes: Partial<Record<ExamCode, { id: string; at: number }>>
+  /** insignias ganadas (buenas y malas): id → veces y última fecha */
+  badges: Record<string, { n: number; at: number }>
+}
+
+export interface DayEvents {
+  day: string
+  /** edificios donde ya se mostró la hoja de "al entrar encuentras…" */
+  seen: ExamCode[]
+  /** desafío del día: aciertos y cuántas preguntas van */
+  desafio: Partial<Record<ExamCode, { ok: number; n: number }>>
+  /** resultado del ataque del día; sin valor = el ataque sigue */
+  ataque: Partial<Record<ExamCode, 'ganada' | 'perdida'>>
+  huidas: number
+  /** paciente del pasillo ya atendido (true = acertó) */
+  pasillo: Partial<Record<ExamCode, boolean>>
+}
+
+/** Un incidente se resuelve solo pasadas 24 h (o antes con una misión para remediarlo). */
+export const AUTO_REPAIR_MS = 24 * 60 * 60 * 1000
+
+export const emptyDay = (day = today()): DayEvents => ({ day, seen: [], desafio: {}, ataque: {}, huidas: 0, pasillo: {} })
+
+/** Cambio de día: reinicia los eventos y cierra los incidentes que ya cumplieron 24 h. */
+export function rollDay(s: GameState, now = Date.now()): GameState {
+  const d = today()
+  let next = s
+  if (!s.ev || s.ev.day !== d) next = { ...next, ev: emptyDay(d) }
+  const inc = Object.entries(next.incidentes ?? {}) as [ExamCode, { id: string; at: number }][]
+  if (inc.some(([, i]) => now - i.at >= AUTO_REPAIR_MS)) {
+    next = { ...next, incidentes: Object.fromEntries(inc.filter(([, i]) => now - i.at < AUTO_REPAIR_MS)) }
+  }
+  return next
 }
 
 const KEY = 'rcerito-state-v1'
@@ -46,6 +82,9 @@ export const initialState = (): GameState => ({
   sims: { ESSALUD: 0, ENAM: 0, SERUMS: 0 },
   medals: [],
   reports: [],
+  ev: emptyDay(),
+  incidentes: {},
+  badges: {},
 })
 
 function load(): GameState {
@@ -78,7 +117,7 @@ export function touchStreak(s: GameState): GameState {
 }
 
 export function useGame() {
-  const [state, setState] = useState<GameState>(() => regenLives(load()))
+  const [state, setState] = useState<GameState>(() => rollDay(regenLives(load())))
 
   useEffect(() => {
     try {
@@ -89,7 +128,7 @@ export function useGame() {
   }, [state])
 
   useEffect(() => {
-    const t = setInterval(() => setState((s) => regenLives(s)), 30000)
+    const t = setInterval(() => setState((s) => rollDay(regenLives(s))), 30000)
     return () => clearInterval(t)
   }, [])
 

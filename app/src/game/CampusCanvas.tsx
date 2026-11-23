@@ -147,8 +147,24 @@ function plaza(ctx: CanvasRenderingContext2D) {
   rect(ctx, x + w - 9, y + 13, 2, 4, C.ink)
 }
 
+/** Techo caído: hueco dentado en el techo y escombros en la puerta. */
+function ruinas(ctx: CanvasRenderingContext2D, p: Place) {
+  const [x, y, w, h] = PLACES[p].box
+  for (let c = 0; c < w; c += 4) {
+    const d = 5 + ((c * 7) % 9)
+    rect(ctx, x + c, y, 4, d, C.grass)
+    rect(ctx, x + c, y + d, 4, 1, C.ink)
+  }
+  for (let i = 0; i < 9; i++) {
+    const bx = x + 6 + ((i * 23) % (w - 12))
+    const by = y + h - 10 - ((i * 5) % 7)
+    rect(ctx, bx - 1, by - 1, 6, 5, C.ink)
+    rect(ctx, bx, by, 4, 3, i % 2 ? PAL.r : '#C9D0D2')
+  }
+}
+
 /** Dibuja el mapa estático una sola vez. */
-function drawMap(ctx: CanvasRenderingContext2D, locked: Place[]) {
+function drawMap(ctx: CanvasRenderingContext2D, locked: Place[], damaged: Place[] = []) {
   rect(ctx, 0, 0, MAP_W, MAP_H, C.grass)
   for (let i = 0; i < 220; i++) {
     const px = (i * 53) % MAP_W
@@ -165,6 +181,7 @@ function drawMap(ctx: CanvasRenderingContext2D, locked: Place[]) {
   postaRural(ctx)
   for (const [tx, ty] of [[2, 112], [96, 6], [176, 112], [162, 150], [176, 196], [150, 214], [96, 216], [4, 154], [168, 250], [126, 268], [2, 262]] as Pt[]) tree(ctx, tx, ty)
   for (const [fx, fy] of [[30, 140], [70, 150], [150, 132], [170, 236], [100, 238], [12, 178]] as Pt[]) kantutas(ctx, fx, fy)
+  for (const p of damaged) if (!locked.includes(p)) ruinas(ctx, p)
   for (const p of locked) {
     const [x, y, w, h] = PLACES[p].box
     ctx.fillStyle = 'rgba(30,42,58,0.55)'
@@ -175,18 +192,20 @@ function drawMap(ctx: CanvasRenderingContext2D, locked: Place[]) {
 
 interface Props {
   locked: Place[]
+  damaged?: Place[]
   onArrive: (place: Place) => void
   start?: Place
   request?: { place: Place; n: number } | null
 }
 
-export function CampusCanvas({ locked, onArrive, start = 'PLAZA', request }: Props) {
+export function CampusCanvas({ locked, damaged = [], onArrive, start = 'PLAZA', request }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const pos = useRef<Pt>([...(start === 'PLAZA' ? HUB : PLACES[start].route.at(-1)!)] as Pt)
   const queue = useRef<Pt[]>([])
   const target = useRef<Place | null>(null)
   const facingLeft = useRef(false)
   const lockedKey = locked.join(',')
+  const damagedKey = damaged.join(',')
 
   useEffect(() => {
     const canvas = canvasRef.current!
@@ -194,7 +213,7 @@ export function CampusCanvas({ locked, onArrive, start = 'PLAZA', request }: Pro
     const bg = document.createElement('canvas')
     bg.width = MAP_W
     bg.height = MAP_H
-    drawMap(bg.getContext('2d')!, lockedKey ? (lockedKey.split(',') as Place[]) : [])
+    drawMap(bg.getContext('2d')!, lockedKey ? (lockedKey.split(',') as Place[]) : [], damagedKey ? (damagedKey.split(',') as Place[]) : [])
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     let raf = 0
     let last = performance.now()
@@ -237,7 +256,7 @@ export function CampusCanvas({ locked, onArrive, start = 'PLAZA', request }: Pro
     }
     raf = requestAnimationFrame(frame)
     return () => cancelAnimationFrame(raf)
-  }, [lockedKey, onArrive])
+  }, [lockedKey, damagedKey, onArrive])
 
   const handleTap = (e: React.PointerEvent<HTMLCanvasElement>) => {
     const r = e.currentTarget.getBoundingClientRect()

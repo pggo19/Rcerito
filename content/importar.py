@@ -19,7 +19,7 @@ import unicodedata
 import urllib.request
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-from estandar import LETRAS, validar  # noqa: E402
+from estandar import LETRAS, area_oficial, validar  # noqa: E402
 
 SUPABASE_URL = os.environ.get("SUPABASE_URL", "https://aoqgwvrdhsiezjvandun.supabase.co")
 
@@ -51,6 +51,8 @@ def normalizar(q: dict) -> dict:
     if isinstance(f, dict) and isinstance(f.get("anio"), str) and f["anio"].isdigit():
         f["anio"] = int(f["anio"])
     q.setdefault("estado", "borrador")
+    if isinstance(q.get("area"), str) and isinstance(q.get("examen"), str):
+        q["area"] = area_oficial(q["examen"], q["area"])
     return q
 
 

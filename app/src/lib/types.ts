@@ -51,6 +51,14 @@ export const EXAMS: ExamInfo[] = [
 
 export const examInfo = (code: ExamCode) => EXAMS.find((e) => e.code === code)!
 
+/** "el Aula Magna", "del Hospital Docente", "a la Posta Rural"… */
+export function edificio(code: ExamCode, forma: 'el' | 'del' | 'al' | 'en' = 'el') {
+  const b = examInfo(code).building
+  const fem = code === 'SERUMS'
+  const pre = { el: fem ? 'la' : 'el', del: fem ? 'de la' : 'del', al: fem ? 'a la' : 'al', en: fem ? 'en la' : 'en el' }[forma]
+  return `${pre} ${b}`
+}
+
 export interface Lesson {
   id: string
   exam: ExamCode
@@ -70,3 +78,7 @@ export type Screen =
   | { name: 'simulacro'; exam?: ExamCode }
   | { name: 'perfil' }
   | { name: 'pro' }
+  | { name: 'encuentro'; exam: ExamCode; modo: Modo }
+
+/** Eventos que aparecen al entrar a un edificio */
+export type Modo = 'ataque' | 'desafio' | 'reparar' | 'pasillo'

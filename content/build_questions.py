@@ -65,6 +65,15 @@ if errores:
 
 data = json.dumps(out, ensure_ascii=False, indent=2)
 (ROOT / "preguntas_prueba.json").write_text(data, encoding="utf-8")
+
+# Copia sin conexión del APK = preguntas de prueba + una muestra del banco del Drive (banco_demo.json).
+# Ojo: aquí solo deben ir preguntas GRATIS; el banco completo se descarga de Supabase.
+demo_path = ROOT / "banco_demo.json"
+if demo_path.exists():
+    demo = json.loads(demo_path.read_text(encoding="utf-8"))
+    ids = {q["id"] for q in out}
+    out = out + [q for q in demo if q["id"] not in ids and not validar(q)[0]]
+    data = json.dumps(out, ensure_ascii=False, indent=2)
 app_data = ROOT.parent / "app" / "src" / "data"
 app_data.mkdir(parents=True, exist_ok=True)
 (app_data / "questions.json").write_text(data, encoding="utf-8")

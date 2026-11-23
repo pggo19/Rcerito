@@ -75,6 +75,37 @@ REPARTO = {
     },
 }
 
+# Nombres de área que usa el banco generado en el Drive (lotes *_lote_NNN.json) → área oficial.
+# Se compara sin tildes ni mayúsculas, así "Salud Pública" y "salud publica" caen en el mismo sitio.
+AREA_ALIAS = {
+    "ESSALUD": {
+        "medicina interna": "Medicina", "cirugia general": "Cirugía", "gineco-obstetricia": "Ginecología y obstetricia",
+        "ginecoobstetricia": "Ginecología y obstetricia", "emergencias": "Emergencias y cuidados críticos",
+    },
+    "ENAM": {
+        "medicina interna": "Medicina", "cirugia general": "Cirugía", "gineco-obstetricia": "Ginecología y obstetricia",
+        "ginecoobstetricia": "Ginecología y obstetricia", "emergencias": "Emergencias y cuidados críticos",
+    },
+    "SERUMS": {},
+}
+
+
+def _llave(texto: str) -> str:
+    import unicodedata
+    t = unicodedata.normalize("NFKD", str(texto).strip().lower())
+    return "".join(c for c in t if not unicodedata.combining(c))
+
+
+def area_oficial(examen: str, area: str) -> str:
+    """Devuelve el nombre oficial del área (taxonomía) o el original si no hay equivalencia."""
+    tax = TAXONOMIA.get(examen, {})
+    k = _llave(area)
+    for oficial in tax:
+        if _llave(oficial) == k:
+            return oficial
+    return AREA_ALIAS.get(examen, {}).get(k, area)
+
+
 ESTADOS = ("borrador", "validada_ia", "revisada_medico", "descartada")
 PUBLICABLES = ("validada_ia", "revisada_medico")
 TIPOS = ("caso_clinico", "directa")
@@ -102,7 +133,8 @@ def validar(q: dict) -> tuple[list[str], list[str]]:
     if q["area"] not in tax:
         err.append(f"área '{q['area']}' no existe para {ex}")
     elif q["subarea"] not in tax[q["area"]]:
-        err.append(f"subárea '{q['subarea']}' no existe en '{q['area']}'")
+        # la sala depende del área; una subárea libre (p. ej. "Cardiología") no impide publicar
+        warn.append(f"subárea '{q['subarea']}' fuera de la lista de '{q['area']}'")
     if q["dificultad"] not in (1, 2, 3):
         err.append("dificultad debe ser 1, 2 o 3")
     if q["tipo"] not in TIPOS:

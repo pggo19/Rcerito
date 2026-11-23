@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Px, Sheet } from '../components/ui'
 import { MEDAL, UKU } from '../game/sprites'
 import { useApp } from '../lib/app'
+import { CATALOGO, insignia } from '../lib/eventos'
 import { EXAMS, examInfo } from '../lib/types'
 
 export function Perfil() {
@@ -52,6 +53,22 @@ export function Perfil() {
             <li key={e.code} className={`medal px ${has ? 'is-on' : ''}`}>
               <Px sprite={MEDAL} scale={4} />
               <span>{e.building}</span>
+            </li>
+          )
+        })}
+      </ul>
+
+      <h2 className="subtitle">Insignias</h2>
+      <p className="muted small">Las rojas se ganan perdiendo o huyendo. La de techo caído se borra al defender ese edificio.</p>
+      <ul className="badges">
+        {CATALOGO.map((id) => {
+          const b = insignia(id)
+          const got = state.badges[id]
+          return (
+            <li key={id} className={`badge px ${got ? 'is-on' : ''} ${b.mala ? 'is-bad' : ''}`} title={b.detalle}>
+              <Px sprite={b.sprite} scale={4} />
+              <span className="badge-name">{b.nombre}</span>
+              {got ? got.n > 1 && <span className="badge-n">×{got.n}</span> : <span className="badge-n">—</span>}
             </li>
           )
         })}
@@ -135,6 +152,7 @@ export function Pro() {
         <li>Simulacros sin tope para los tres exámenes</li>
         <li>Todos los edificios abiertos desde el primer día</li>
         <li>Diagnóstico por área y repaso de errores sin límite</li>
+        <li>Reparaciones de edificios y Descarte en batalla gratis</li>
       </ul>
       <div className="stack" role="radiogroup" aria-label="Plan">
         {PLANS.map((p) => (

@@ -7,6 +7,7 @@ import type { ExamCode, Question, Screen } from './lib/types'
 import bundled from './data/questions.json'
 import { Building } from './screens/Building'
 import { Campus } from './screens/Campus'
+import { Encuentro } from './screens/Encuentro'
 import { LessonScreen } from './screens/Lesson'
 import { Onboarding } from './screens/Onboarding'
 import { Perfil, Pro } from './screens/Perfil'
@@ -16,6 +17,7 @@ import { Simulacro } from './screens/Simulacro'
 const TAB_OF: Partial<Record<Screen['name'], Tab>> = {
   campus: 'campus',
   building: 'campus',
+  encuentro: 'campus',
   plaza: 'plaza',
   banco: 'plaza',
   flashcards: 'plaza',
@@ -61,7 +63,7 @@ export default function App() {
 
   const ctx: AppCtx = { state, update, reset, questions, source, lessons, go, toast }
   const tab = TAB_OF[screen.name]
-  const immersive = screen.name === 'lesson' || screen.name === 'onboarding'
+  const immersive = screen.name === 'lesson' || screen.name === 'onboarding' || screen.name === 'encuentro'
 
   return (
     <Ctx.Provider value={ctx}>
@@ -77,6 +79,7 @@ export default function App() {
         {screen.name === 'simulacro' && <Simulacro exam={screen.exam} />}
         {screen.name === 'perfil' && <Perfil />}
         {screen.name === 'pro' && <Pro />}
+        {screen.name === 'encuentro' && <Encuentro key={`${screen.exam}:${screen.modo}`} exam={screen.exam} modo={screen.modo} />}
         {!immersive && tab && <NavBar active={tab} onGo={(t) => go({ name: t })} />}
         {toastMsg && (
           <div className="toast px" role="status">
