@@ -79,6 +79,8 @@ export type Screen =
   | { name: 'perfil' }
   | { name: 'pro' }
   | { name: 'encuentro'; exam: ExamCode; modo: Modo }
+  | { name: 'tienda' }
+  | { name: 'avatar' }
 
 /** Eventos que aparecen al entrar a un edificio */
 export type Modo = 'ataque' | 'desafio' | 'reparar' | 'pasillo'

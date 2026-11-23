@@ -7,16 +7,18 @@ Todo está en `app/src/lib/eventos.ts` (reglas y textos) y `app/src/screens/Encu
 
 | Evento | Cuándo | Preguntas | Premio / castigo |
 | --- | --- | --- | --- |
-| **Emergencia / ataque** | 1 edificio abierto por día (el mismo para todos) | 1 | Acierto: +8 gemas, +20 XP, insignia *Defensor*. Fallo: −3 gemas + **incidente**. Huir: −1 gema, insignia roja *Retirada*, la emergencia sigue. |
-| **Desafío del día** | Todos los edificios, cada día | 3 | +3 gemas por acierto, +5 si 3/3 (*Desafío perfecto*). 0/3 = insignia roja *Mal día*. |
-| **Paciente en el pasillo** | ~1 de cada 2 días por edificio | 1 | +3 gemas, insignia *Ojo clínico*. |
-| **Remediar incidente** | Si perdiste una emergencia | 3 (aprobar con 2) | +5 gemas, insignia *Lo arreglaste*. |
+| **Emergencia / ataque** | 1 edificio por día (el mismo para todos) | 1 | Acierto: +25 gemas, +30 XP, insignia *Defensor*. Fallo: −10 gemas + **incidente**. Huir: −3 gemas, insignia roja *Retirada*, la emergencia sigue. |
+| **Desafío del día** | Todos los edificios, cada día | 3 | +5 gemas por acierto, +15 si 3/3 (*Desafío perfecto*). 0/3 = insignia roja *Mal día*. |
+| **Paciente en el pasillo** | ~1 de cada 2 días por edificio | 1 | +10 gemas, insignia *Ojo clínico*. |
+| **Remediar incidente** | Si perdiste una emergencia | 3 (aprobar con 2) | +15 gemas, insignia *Lo arreglaste*. |
 
-Mochila en combate: **Descarte** tacha 2 opciones falsas (5 gemas; gratis con Pro).
+Mochila en combate: **Descarte** tacha 2 opciones falsas (15 gemas; gratis con Pro).
+
+Los premios usan la misma economía que las lecciones (`ganarGemas`: tope de 400 gemas al día) y la XP sube de nivel con `sumarXp`.
 
 ## Incidentes por escenario
 
-Mientras un incidente siga abierto, las lecciones de ese edificio dan **la mitad de gemas**. Se cierra con la misión (Pro gratis; plan gratis 10 gemas) o solo, a las 24 h. La insignia roja queda hasta que vuelvas a ganar una emergencia en ese edificio.
+Mientras un incidente siga abierto, las lecciones de ese edificio dan **la mitad de gemas**. Se cierra con la misión (Pro gratis; plan gratis 30 gemas) o solo, a las 24 h. La insignia roja queda hasta que vuelvas a ganar una emergencia en ese edificio.
 
 | Edificio | Incidentes posibles → misión |
 | --- | --- |

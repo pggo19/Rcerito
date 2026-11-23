@@ -1,12 +1,14 @@
 import { supabase } from './supabase'
 
-/** Guarda la respuesta en la nube solo si hay sesión iniciada; sin sesión el progreso vive en el teléfono. */
-export async function recordAnswer(questionId: string, chosen: string, isCorrect: boolean, mode: 'leccion' | 'banco' | 'simulacro') {
+// Con sesión iniciada, la nube corrige cada respuesta (registrar_respuestas) y lleva el
+// repaso espaciado. Sin sesión, el progreso vive en el teléfono.
+export async function recordAnswer(questionId: string, chosen: string, _isCorrect: boolean, mode: 'leccion' | 'banco' | 'simulacro') {
   try {
     const { data } = await supabase.auth.getSession()
-    const user = data.session?.user
-    if (!user) return
-    await supabase.from('answers').insert({ user_id: user.id, question_id: questionId, chosen, is_correct: isCorrect, mode })
+    if (!data.session?.user || mode === 'simulacro') return
+    await supabase.rpc('registrar_respuestas', {
+      p: [{ client_id: crypto.randomUUID(), question_id: questionId, elegida: chosen, modo: mode, answered_at: new Date().toISOString() }],
+    })
   } catch {
     /* sin red: no bloquea el estudio */
   }

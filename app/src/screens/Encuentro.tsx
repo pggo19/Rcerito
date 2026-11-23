@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import { QuestionView } from '../components/QuestionView'
+import { MiUku } from '../components/Personaje'
 import { Px, UkuSays } from '../components/ui'
 import { GEM, UKU, UKU_HAPPY, UKU_SAD, type Sprite } from '../game/sprites'
 import { useApp } from '../lib/app'
@@ -23,6 +24,7 @@ import {
   preguntasDe,
   quitarInsignia,
   rival,
+  xp,
 } from '../lib/eventos'
 import { AUTO_REPAIR_MS } from '../lib/store'
 import { recordAnswer, sendReport } from '../lib/sync'
@@ -104,7 +106,7 @@ export function Encuentro({ exam, modo }: { exam: ExamCode; modo: Modo }) {
 
   const huir = () => {
     update((s) => darInsignia({ ...gemas(s, PREMIO.huir), ev: { ...s.ev, huidas: s.ev.huidas + 1 } }, 'huida'))
-    toast(`Huiste. El ataque sigue y perdiste ${-PREMIO.huir} gema.`)
+    toast(`Huiste. La emergencia sigue y perdiste ${-PREMIO.huir} gemas.`)
     volver()
   }
 
@@ -127,7 +129,7 @@ export function Encuentro({ exam, modo }: { exam: ExamCode; modo: Modo }) {
         setLinea(`¡Bien resuelto! El caso de «${q.tema}» quedó controlado ${edificio(exam, 'en')}.`)
         update((s) => {
           let n = contarRespuesta(s, q, true)
-          n = gemas({ ...n, xp: n.xp + PREMIO.defensa.xp, ev: { ...n.ev, ataque: { ...n.ev.ataque, [exam]: 'ganada' } } }, PREMIO.defensa.gems)
+          n = gemas(xp({ ...n, ev: { ...n.ev, ataque: { ...n.ev.ataque, [exam]: 'ganada' } } }, PREMIO.defensa.xp), PREMIO.defensa.gems)
           n = darInsignia(n, `defensor:${exam}`)
           // defender el edificio borra sus insignias rojas de incidentes
           for (const i of INCIDENTES.filter((x) => x.exam === exam)) n = quitarInsignia(n, `inc:${i.id}`)
@@ -250,7 +252,7 @@ export function Encuentro({ exam, modo }: { exam: ExamCode; modo: Modo }) {
       ukuHp={ukuHp}
       golpe={golpe}
       linea={linea}
-      ukuSprite={golpe === 'uku' ? UKU_SAD : respondida && golpe === 'rival' ? UKU_HAPPY : UKU}
+      animo={ukuHp < 100 ? 'triste' : respondida && ok > 0 ? 'feliz' : 'normal'}
     />
   )
 
@@ -321,7 +323,7 @@ export function Encuentro({ exam, modo }: { exam: ExamCode; modo: Modo }) {
                   Defender
                 </button>
                 <button type="button" className="btn btn-secondary" onClick={huir}>
-                  Huir <small>−{-PREMIO.huir} gema</small>
+                  Huir <small>−{-PREMIO.huir} gemas</small>
                 </button>
               </>
             )}
@@ -414,7 +416,7 @@ function Arena(p: {
   ukuHp: number
   golpe: 'rival' | 'uku' | null
   linea: string
-  ukuSprite: Sprite
+  animo: 'normal' | 'feliz' | 'triste'
 }) {
   return (
     <section className={`arena px arena-${p.exam.toLowerCase()}`} aria-label="Combate">
@@ -427,7 +429,7 @@ function Arena(p: {
         </div>
         <div className="arena-me">
           <div className={`arena-sprite ${p.golpe === 'uku' ? 'is-hit' : ''}`}>
-            <Px sprite={p.ukuSprite} scale={5} flip alt="Uku" />
+            <MiUku animo={p.animo} size={88} />
           </div>
           <Stat nombre="Uku" hp={p.ukuHp} label="Ánimo" buena />
         </div>

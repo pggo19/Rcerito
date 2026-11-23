@@ -1,7 +1,7 @@
 import { createContext, useContext } from 'react'
 import type { GameState } from './store'
+import type { ResumenSalas, PromoR0 } from './nube'
 import type { ExamCode, Lesson, Question, Screen } from './types'
-import { EXAMS } from './types'
 
 export interface AppCtx {
   state: GameState
@@ -12,32 +12,20 @@ export interface AppCtx {
   lessons: Record<ExamCode, Lesson[]>
   go: (s: Screen) => void
   toast: (msg: string) => void
+  resumen: ResumenSalas
+  promo: PromoR0 | null
 }
 
 export const Ctx = createContext<AppCtx>(null as unknown as AppCtx)
 export const useApp = () => useContext(Ctx)
-
-/** Un edificio está abierto si es el examen objetivo o uno anterior, si ya tiene la medalla del objetivo, o con Pro. */
-export function isUnlocked(state: GameState, exam: ExamCode) {
-  if (state.pro || !state.target) return true
-  const order = EXAMS.map((e) => e.code)
-  const t = order.indexOf(state.target)
-  const i = order.indexOf(exam)
-  return i <= t || state.medals.includes(state.target)
-}
-
-export function lessonUnlocked(state: GameState, lessons: Lesson[], idx: number) {
-  return idx === 0 || Boolean(state.done[lessons[idx - 1].id])
-}
 
 export function examProgress(state: GameState, lessons: Lesson[]) {
   const done = lessons.filter((l) => state.done[l.id]).length
   return { done, total: lessons.length }
 }
 
-export function earnedMedal(state: GameState, lessons: Lesson[]) {
-  return lessons.length > 0 && lessons.every((l) => {
-    const d = state.done[l.id]
-    return d && d.best / d.total >= 0.8
-  })
+/** ¿Mostrar el banner de R0 Plus? Solo a serumistas o a quien llegó a Uku Serumista. */
+export function verPromo(state: GameState, promo: PromoR0 | null) {
+  if (!promo?.activo || !promo.url) return false
+  return state.ukuEtapa >= promo.etapa_minima || (state.target !== null && promo.objetivos.includes(state.target))
 }

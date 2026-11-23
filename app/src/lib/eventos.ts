@@ -33,23 +33,24 @@ import {
   PACIENTE,
   PUERTA,
 } from '../game/sprites'
-import { isUnlocked } from './app'
+import { ganarGemas, sumarXp } from './economia'
 import { today, type GameState } from './store'
 import { EXAMS, edificio, type ExamCode, type Modo, type Question } from './types'
 
 export type { Modo }
 
+// Escala de la economía (una lección da 10 gemas; tope diario de 400, ver economia.ts)
 export const PREMIO = {
-  defensa: { gems: 8, xp: 20 },
-  perderTecho: -3,
-  huir: -1,
-  desafioPorAcierto: 3,
-  desafioPerfecto: 5,
-  pasillo: 3,
-  reparar: 5,
+  defensa: { gems: 25, xp: 30 },
+  perderTecho: -10,
+  huir: -3,
+  desafioPorAcierto: 5,
+  desafioPerfecto: 15,
+  pasillo: 10,
+  reparar: 15,
 }
-export const COSTO_REPARAR_GRATIS = 10
-export const COSTO_DESCARTE = 5
+export const COSTO_REPARAR_GRATIS = 30
+export const COSTO_DESCARTE = 15
 export const DESAFIO_N = 3
 export const REPARAR_N = 3
 export const REPARAR_MIN = 2
@@ -90,8 +91,8 @@ function pick<T>(list: T[], n: number, seed: string): T[] {
 
 /** El edificio atacado hoy (uno solo, entre los abiertos). */
 export function edificioAtacado(state: GameState, day = today()): ExamCode | null {
-  const open = EXAMS.map((e) => e.code).filter((c) => isUnlocked(state, c))
-  if (!open.length) return null
+  void state // hoy los tres edificios están abiertos; lo Pro se decide por lección
+  const open = EXAMS.map((e) => e.code)
   return open[hash(`ataque:${day}`) % open.length]
 }
 
@@ -272,13 +273,16 @@ export function quitarInsignia(s: GameState, id: string): GameState {
   return { ...s, badges }
 }
 
-export const gemas = (s: GameState, delta: number): GameState => ({ ...s, gems: Math.max(0, s.gems + delta) })
+/** Premios respetan el tope diario de gemas; los castigos nunca dejan el saldo en negativo. */
+export const gemas = (s: GameState, delta: number): GameState => (delta > 0 ? ganarGemas(s, delta).s : { ...s, gems: Math.max(0, s.gems + delta) })
+
+export const xp = (s: GameState, n: number): GameState => sumarXp(s, n).s
 
 /** Estadísticas y repaso: los eventos cuentan como práctica (sin gastar vidas). */
 export function contarRespuesta(s: GameState, q: Question, correct: boolean): GameState {
   const st = s.stats[q.examen]
   const wrong = correct ? s.wrong.filter((id) => id !== q.id) : Array.from(new Set([...s.wrong, q.id]))
-  return { ...s, xp: s.xp + (correct ? 10 : 0), wrong, stats: { ...s.stats, [q.examen]: { ok: st.ok + (correct ? 1 : 0), total: st.total + 1 } } }
+  return xp({ ...s, wrong, stats: { ...s.stats, [q.examen]: { ok: st.ok + (correct ? 1 : 0), total: st.total + 1 } } }, correct ? 10 : 0)
 }
 
 export function marcarVisto(s: GameState, exam: ExamCode): GameState {

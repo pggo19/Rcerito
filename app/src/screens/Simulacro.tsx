@@ -1,26 +1,50 @@
 import { useEffect, useMemo, useState } from 'react'
+import { MiUku } from '../components/Personaje'
 import { UkuSays } from '../components/ui'
+import { ETAPAS } from '../game/pixel'
 import { UKU, UKU_HAPPY } from '../game/sprites'
 import { useApp } from '../lib/app'
+import { cerrarSimulacro, expressGratisDisponibles, LECCIONES_GRATIS_POR_SALA, NOTA_APROBATORIA, SIMULACRO_OFICIAL } from '../lib/economia'
 import { shuffle } from '../lib/questions'
-import { FREE_SIMS_PER_EXAM } from '../lib/store'
 import { recordAnswer } from '../lib/sync'
 import { EXAMS, examInfo, type ExamCode, type Question } from '../lib/types'
 
-const SECONDS_PER_Q = 60
+type Modo = 'express20' | 'express50' | 'oficial'
+
+/** Muestra estratificada por área, proporcional al banco (como arma el servidor). */
+function armar(pool: Question[], n: number): Question[] {
+  const porArea = new Map<string, Question[]>()
+  for (const q of shuffle(pool)) porArea.set(q.area, [...(porArea.get(q.area) ?? []), q])
+  const elegidas: Question[] = []
+  for (const lista of porArea.values()) elegidas.push(...lista.slice(0, Math.max(1, Math.round((n * lista.length) / pool.length))))
+  return shuffle(elegidas).slice(0, n)
+}
 
 export function Simulacro({ exam: initial }: { exam?: ExamCode }) {
-  const { state, update, questions, go } = useApp()
+  const { state, update, questions, lessons, go } = useApp()
   const [exam, setExam] = useState<ExamCode>(initial ?? state.target ?? 'ENAM')
+  const [modo, setModo] = useState<Modo>('express20')
   const [phase, setPhase] = useState<'intro' | 'run' | 'done'>('intro')
   const [set, setSet] = useState<Question[]>([])
   const [answers, setAnswers] = useState<Record<string, string>>({})
   const [i, setI] = useState(0)
   const [left, setLeft] = useState(0)
+  const [jugado, setJugado] = useState<{ modo: Modo; esperadas: number; aTiempo: boolean } | null>(null)
+  const [resultado, setResultado] = useState<{ nota: number; aprobado: boolean; evoluciono: boolean } | null>(null)
 
-  const pool = useMemo(() => questions.filter((q) => q.examen === exam), [questions, exam])
-  const used = state.sims[exam] ?? 0
-  const canStart = state.pro || used < FREE_SIMS_PER_EXAM
+  // Gratis: el Express usa solo las lecciones gratis. Pro o con pase: todo el banco descargado.
+  const gratisIds = useMemo(
+    () => new Set(lessons[exam].filter((l) => l.index < LECCIONES_GRATIS_POR_SALA).flatMap((l) => l.questions.map((q) => q.id))),
+    [lessons, exam],
+  )
+  const poolTodo = useMemo(() => questions.filter((q) => q.examen === exam), [questions, exam])
+  const oficial = SIMULACRO_OFICIAL[exam]
+  const n = modo === 'express20' ? 20 : modo === 'express50' ? 50 : oficial.preguntas
+  const minutos = modo === 'oficial' ? oficial.minutos : n
+  const gratisLibres = expressGratisDisponibles(state)
+  const pool = modo !== 'oficial' && !state.pro ? poolTodo.filter((q) => gratisIds.has(q.id)) : poolTodo
+  const total = Math.min(pool.length, n)
+  const puede = state.pro || (modo === 'oficial' ? state.pases > 0 : gratisLibres > 0)
 
   useEffect(() => {
     if (phase !== 'run') return
@@ -34,13 +58,17 @@ export function Simulacro({ exam: initial }: { exam?: ExamCode }) {
   }, [left, phase])
 
   const start = () => {
-    const chosen = shuffle(pool).slice(0, 100)
+    const chosen = armar(pool, n)
     setSet(chosen)
     setAnswers({})
     setI(0)
-    setLeft(chosen.length * SECONDS_PER_Q)
+    setLeft(Math.round((minutos * 60 * chosen.length) / n))
+    setJugado({ modo, esperadas: n, aTiempo: true })
+    setResultado(null)
     setPhase('run')
-    update((s) => ({ ...s, sims: { ...s.sims, [exam]: (s.sims[exam] ?? 0) + 1 } }))
+    if (!state.pro) {
+      update((s) => (modo === 'oficial' ? { ...s, pases: Math.max(0, s.pases - 1) } : { ...s, simsGratis: [...s.simsGratis, Date.now()] }))
+    }
   }
 
   const finish = () => {
@@ -50,7 +78,11 @@ export function Simulacro({ exam: initial }: { exam?: ExamCode }) {
       if (a) recordAnswer(q.id, a, a === q.correcta, 'simulacro')
       if (a === q.correcta) ok++
     }
-    update((s) => ({ ...s, xp: s.xp + ok * 10, gems: s.gems + 5 }))
+    const modoJugado = jugado?.modo === 'oficial' ? 'oficial' : 'express'
+    const completo = set.length >= (jugado?.esperadas ?? Infinity)
+    const r = cerrarSimulacro(state, exam, modoJugado, ok, set.length, completo)
+    setResultado({ nota: r.nota, aprobado: r.aprobado, evoluciono: r.evoluciono })
+    update((s) => cerrarSimulacro(s, exam, modoJugado, ok, set.length, completo).s)
     setPhase('done')
   }
 
@@ -58,38 +90,68 @@ export function Simulacro({ exam: initial }: { exam?: ExamCode }) {
     return (
       <main className="screen sim">
         <h1 className="title">Simulacro</h1>
-        <div className="filters" role="tablist" aria-label="Examen">
+        <div className="filters">
           {EXAMS.map((e) => (
-            <button key={e.code} role="tab" type="button" aria-selected={exam === e.code} className={`filter ${exam === e.code ? 'is-on' : ''}`} onClick={() => setExam(e.code)}>
+            <button key={e.code} type="button" aria-pressed={exam === e.code} className={`filter ${exam === e.code ? 'is-on' : ''}`} onClick={() => setExam(e.code)}>
               {e.name}
             </button>
           ))}
         </div>
+        <div className="filters">
+          {(
+            [
+              ['express20', 'Express 20'],
+              ['express50', 'Express 50'],
+              ['oficial', 'Oficial'],
+            ] as [Modo, string][]
+          ).map(([id, label]) => (
+            <button key={id} type="button" aria-pressed={modo === id} className={`filter ${modo === id ? 'is-on' : ''}`} onClick={() => setModo(id)}>
+              {label}
+            </button>
+          ))}
+        </div>
         <section className="sim-card px">
-          <p className="next-title">{examInfo(exam).name}</p>
+          <p className="next-title">
+            {examInfo(exam).name} · {modo === 'oficial' ? 'Oficial' : 'Express'}
+          </p>
           <dl className="sim-facts">
             <div>
-              <dt>Reactivos</dt>
-              <dd>{Math.min(pool.length, 100)}</dd>
+              <dt>Preguntas</dt>
+              <dd>{total}</dd>
             </div>
             <div>
               <dt>Minutos</dt>
-              <dd>{Math.round((Math.min(pool.length, 100) * SECONDS_PER_Q) / 60)}</dd>
+              <dd>{Math.round((minutos * total) / n)}</dd>
             </div>
             <div>
-              <dt>Gratis</dt>
-              <dd>{state.pro ? '∞' : Math.max(0, FREE_SIMS_PER_EXAM - used)}</dd>
+              <dt>{modo === 'oficial' ? 'Pases' : 'Gratis'}</dt>
+              <dd>{state.pro ? '∞' : modo === 'oficial' ? state.pases : gratisLibres}</dd>
             </div>
           </dl>
-          <p className="muted small">Sin pistas ni vidas. Al final ves tu puntaje sobre 100 y el detalle por área.</p>
-          {canStart ? (
-            <button type="button" className="btn btn-block" onClick={start} disabled={!pool.length}>
+          {modo === 'oficial' ? (
+            <p className="muted small">
+              Como el examen real: {oficial.preguntas} preguntas en {oficial.minutos} minutos, nota sobre 20. Si lo completas a tiempo con {NOTA_APROBATORIA[exam]} o más, cuenta como aprobado y{' '}
+              {state.ukuNombre} puede evolucionar.
+              {total < oficial.preguntas && ` Por ahora el banco tiene ${total}: puedes practicarlo, pero aún no cuenta como aprobado.`}
+            </p>
+          ) : (
+            <p className="muted small">Sin pistas ni vidas. Al final ves tu nota y el detalle por área. {!state.pro && 'Gratis: 1 por semana, con las lecciones gratis.'}</p>
+          )}
+          {puede ? (
+            <button type="button" className="btn btn-block" onClick={start} disabled={!total}>
               Empezar simulacro
             </button>
           ) : (
-            <button type="button" className="btn btn-gold btn-block" onClick={() => go({ name: 'pro' })}>
-              Más simulacros con Pro
-            </button>
+            <div className="stack">
+              <button type="button" className="btn btn-gold btn-block" onClick={() => go({ name: 'pro' })}>
+                Simulacros sin tope con Pro
+              </button>
+              {modo === 'oficial' && (
+                <button type="button" className="btn btn-secondary btn-block" onClick={() => go({ name: 'tienda' })}>
+                  Comprar un pase con gemas
+                </button>
+              )}
+            </div>
           )}
         </section>
       </main>
@@ -150,7 +212,8 @@ export function Simulacro({ exam: initial }: { exam?: ExamCode }) {
   }
 
   const ok = set.filter((q) => answers[q.id] === q.correcta).length
-  const score = Math.round((ok / Math.max(set.length, 1)) * 100)
+  const nota = resultado?.nota ?? 0
+  const bien = nota >= NOTA_APROBATORIA[exam]
   const byArea = new Map<string, { ok: number; total: number }>()
   for (const q of set) {
     const a = byArea.get(q.area) ?? { ok: 0, total: 0 }
@@ -163,13 +226,26 @@ export function Simulacro({ exam: initial }: { exam?: ExamCode }) {
   return (
     <main className="screen sim-done">
       <p className="end-score">
-        <span className="end-big">{score}</span>/100
+        <span className="end-big">{nota.toFixed(1)}</span>/20
       </p>
-      <UkuSays sprite={score >= 70 ? UKU_HAPPY : UKU} tone={score >= 70 ? 'ok' : 'neutral'}>
+      <UkuSays sprite={bien ? UKU_HAPPY : UKU} tone={bien ? 'ok' : 'neutral'}>
         <p>
-          {ok} de {set.length} correctas en el simulacro de {examInfo(exam).name}. {score >= 70 ? 'Buen nivel: sigue sosteniéndolo.' : 'Mira abajo qué áreas reforzar primero.'}
+          {ok} de {set.length} correctas en el simulacro de {examInfo(exam).name}.{' '}
+          {resultado?.aprobado
+            ? '¡Aprobado! Cuenta como examen superado.'
+            : bien
+              ? 'Nota aprobatoria: sigue sosteniéndola.'
+              : `La nota mínima es ${NOTA_APROBATORIA[exam]}. Mira abajo qué áreas reforzar primero.`}
         </p>
       </UkuSays>
+      {resultado?.evoluciono && (
+        <section className="evolucion px">
+          <MiUku animo="feliz" size={128} />
+          <p className="next-title">
+            ¡{state.ukuNombre} evolucionó a {ETAPAS[state.ukuEtapa].nombre}!
+          </p>
+        </section>
+      )}
       <table className="area-table">
         <caption>Resultado por área</caption>
         <thead>

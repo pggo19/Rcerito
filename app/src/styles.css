@@ -332,6 +332,74 @@ button.hud-chip { cursor: pointer; }
 .plan-price { font-size: 30px; }
 .room-door { font-size: 26px; }
 
+/* ---------- Avatar, Uku por capas, tienda ---------- */
+.capas { position: relative; display: inline-block; flex: none; line-height: 0; }
+.capas img { position: absolute; inset: 0; width: 100%; height: 100%; image-rendering: pixelated; pointer-events: none; }
+.escena {
+  display: flex; align-items: flex-end; justify-content: center; gap: 2px;
+  background-size: cover; background-position: center bottom; image-rendering: pixelated;
+  padding-bottom: 4px; overflow: hidden;
+}
+.uku-portrait .capas { display: block; }
+
+.pick-group { border: 0; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
+.pick-group legend { font-weight: 700; padding: 0; margin-bottom: 6px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.chips .filter { min-height: 40px; }
+.swatches { display: flex; gap: 10px; }
+.swatch { width: 44px; height: 44px; border: 0; cursor: pointer; box-shadow: inset 0 0 0 3px var(--ink); }
+.swatch.is-on { outline: 3px solid var(--mostaza); outline-offset: 3px; }
+
+.etapas { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; padding: 10px; background: var(--sheet); }
+.etapa { display: flex; flex-direction: column; align-items: center; gap: 2px; opacity: 0.35; filter: grayscale(1); }
+.etapa.is-on { opacity: 1; filter: none; }
+.etapa.is-now { background: var(--mostaza-lt); }
+
+.row-between { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.saldo { display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; background: var(--sheet); font-family: var(--font-num); font-size: 24px; }
+.precio { display: inline-flex; align-items: center; gap: 4px; font-family: var(--font-num); font-size: 20px; }
+
+.ayuda { display: flex; align-items: center; gap: 12px; padding: 12px 14px; background: var(--sheet); }
+.ayuda-text { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+.ayuda .btn { min-width: 84px; }
+.ganar { padding: 12px 14px; background: var(--mostaza-lt); display: flex; flex-direction: column; gap: 4px; }
+
+.vitrina { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.producto {
+  width: calc(100% - 6px); min-height: 150px; border: 0; cursor: pointer; background: var(--sheet);
+  display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 8px 4px 10px; text-align: center;
+}
+.producto-nombre { font-size: 13px; font-weight: 700; line-height: 1.2; }
+.producto-meta { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); }
+.rareza-raro { background: #e4f4f1; }
+.rareza-epico { background: #efe6fb; }
+.rareza-legendario { background: var(--mostaza-lt); }
+.tag-pro, .tag-rareza { display: inline-block; font-size: 12px; font-weight: 700; padding: 1px 6px; margin-right: 6px; }
+.tag-pro { background: var(--ink); color: var(--mostaza); }
+.tag-rareza { box-shadow: inset 0 0 0 2px var(--ink); }
+.producto-detalle { display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; }
+.fondo-mini { image-rendering: pixelated; box-shadow: 0 0 0 2px var(--ink); }
+
+.sala { display: flex; flex-direction: column; gap: 8px; }
+.sala-name { margin: 6px 0 0; font-size: 18px; }
+.room.is-locked { background: #eceee9; }
+.room.is-locked .room-door { background: #9aa3a8; }
+
+.evolucion { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 14px; background: var(--mostaza-lt); text-align: center; }
+.promo-r0 {
+  display: flex; flex-direction: column; gap: 4px; padding: 14px 16px; text-decoration: none;
+  background: var(--ink); color: #fff;
+}
+.promo-r0 .next-title { color: var(--mostaza); }
+.promo-r0-cta { font-family: var(--font-px); color: var(--mostaza); }
+
+.insignias { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 12px; }
+.insignias li { display: flex; align-items: center; gap: 6px; }
+.insignias img { image-rendering: pixelated; }
+.meter.nivel { background: var(--line); height: 12px; margin: 0; box-shadow: inset 0 0 0 2px var(--ink); }
+.meter.nivel span { flex: none; height: 100%; background: var(--mostaza); }
+.tile-tienda { background: #efe6fb; }
+
 /* ===== eventos del campus: ataques, desafío del día, pasillo, reparación ===== */
 .eventos { display: flex; flex-direction: column; gap: 10px; }
 .evento { width: calc(100% - 6px); display: flex; align-items: center; gap: 12px; padding: 10px 12px; background: var(--sheet); border: 0; text-align: left; cursor: pointer; }

@@ -2,12 +2,14 @@ import { useMemo, useRef, useState } from 'react'
 import { QuestionView } from '../components/QuestionView'
 import { Px, Sheet, UkuSays } from '../components/ui'
 import { HEART, UKU, UKU_HAPPY, UKU_SAD } from '../game/sprites'
-import { earnedMedal, useApp } from '../lib/app'
-import { MAX_LIVES, nextLifeIn, touchStreak } from '../lib/store'
+import { MiUku } from '../components/Personaje'
+import { ETAPAS } from '../game/pixel'
+import { useApp } from '../lib/app'
+import { precioDe } from '../lib/catalogo'
+import { comprar, completarLeccion, MENSAJE_ERROR, type ResumenLeccion } from '../lib/economia'
+import { MAX_LIVES, nextLifeIn } from '../lib/store'
 import { recordAnswer, sendReport } from '../lib/sync'
 import { examInfo } from '../lib/types'
-
-const REFILL_COST = 20
 
 export function LessonScreen({ lessonId }: { lessonId: string }) {
   const app = useApp()
@@ -20,6 +22,8 @@ export function LessonScreen({ lessonId }: { lessonId: string }) {
   const [finished, setFinished] = useState(false)
   const [noLives, setNoLives] = useState(false)
   const [confirmExit, setConfirmExit] = useState(false)
+  const [premio, setPremio] = useState<ResumenLeccion | null>(null)
+  const refillCost = precioDe('recarga_vidas')
 
   if (!lesson) return <main className="screen"><p>No encontramos esta sala.</p></main>
   const total = lesson.questions.length
@@ -35,7 +39,6 @@ export function LessonScreen({ lessonId }: { lessonId: string }) {
       const lives = !correct && !unlimited ? Math.max(0, s.lives - 1) : s.lives
       return {
         ...s,
-        xp: s.xp + (correct ? 10 : 0),
         lives,
         livesAt: s.lives === MAX_LIVES && lives < MAX_LIVES ? Date.now() : s.livesAt,
         wrong,
@@ -57,22 +60,14 @@ export function LessonScreen({ lessonId }: { lessonId: string }) {
   }
 
   const finish = () => {
-    const perfect = ok === total
+    // el resumen se calcula con el estado actual; el mismo cálculo se aplica al guardar
+    const { r } = completarLeccion(state, lesson, ok, total, lessons[lesson.exam])
+    // con un incidente pendiente en el edificio, la mitad de gemas hasta remediarlo
+    const recorte = (st: typeof state, gemas: number) => (st.incidentes[lesson.exam] ? Math.ceil(gemas / 2) : 0)
+    setPremio({ ...r, gemas: r.gemas - recorte(state, r.gemas) })
     update((s) => {
-      // con un incidente pendiente en el edificio, la mitad de gemas hasta remediarlo
-      const factor = s.incidentes[lesson.exam] ? 0.5 : 1
-      const prev = s.done[lesson.id]
-      const done = { ...s.done, [lesson.id]: { best: Math.max(prev?.best ?? 0, ok), total } }
-      let next = touchStreak({
-        ...s,
-        done,
-        xp: s.xp + (perfect ? 5 : 0),
-        gems: s.gems + Math.floor((2 + (perfect ? 3 : 0)) * factor),
-        practiceLeft: practice ? Math.max(0, s.practiceLeft - 1) : s.practiceLeft,
-      })
-      const list = lessons[lesson.exam]
-      if (!next.medals.includes(lesson.exam) && earnedMedal(next, list)) next = { ...next, medals: [...next.medals, lesson.exam], gems: next.gems + 10 }
-      return next
+      const { s: next, r: rr } = completarLeccion(s, lesson, ok, total, lessons[lesson.exam])
+      return { ...next, gems: next.gems - recorte(s, rr.gemas), practiceLeft: practice ? Math.max(0, next.practiceLeft - 1) : next.practiceLeft }
     })
     setFinished(true)
   }
@@ -95,14 +90,24 @@ export function LessonScreen({ lessonId }: { lessonId: string }) {
           </div>
           <div className="px">
             <dt>Experiencia</dt>
-            <dd>+{ok * 10 + (ok === total ? 5 : 0)}</dd>
+            <dd>+{premio?.xp ?? 0}</dd>
           </div>
           <div className="px">
             <dt>Gemas</dt>
-            <dd>+{Math.floor((2 + (ok === total ? 3 : 0)) * (state.incidentes[lesson.exam] ? 0.5 : 1))}</dd>
+            <dd>+{premio?.gemas ?? 0}</dd>
           </div>
         </dl>
-        {state.medals.includes(lesson.exam) && <p className="medal-note">Tienes la medalla de {examInfo(lesson.exam).building}.</p>}
+        {state.incidentes[lesson.exam] && <p className="muted small">Mitad de gemas: tienes un incidente sin remediar en este edificio.</p>}
+        {premio && premio.gemas === 0 && <p className="muted small">Las gemas de esta lección ya las cobraste hoy (o llegaste al tope diario). Vuelve mañana.</p>}
+        {premio?.subioNivel && <p className="medal-note">¡Subiste al nivel {state.nivel}!</p>}
+        {premio?.protector && <p className="medal-note">Tu protector salvó la racha: {premio.racha} días.</p>}
+        {premio?.medalla && <p className="medal-note">Ganaste la medalla de {examInfo(lesson.exam).building}.</p>}
+        {premio?.evoluciono && (
+          <section className="evolucion px">
+            <MiUku animo="feliz" size={128} />
+            <p className="next-title">¡{state.ukuNombre} evolucionó a {ETAPAS[state.ukuEtapa].nombre}!</p>
+          </section>
+        )}
         <div className="stack">
           <button type="button" className="btn btn-block" onClick={() => go({ name: 'building', exam: lesson.exam })}>
             Volver a {examInfo(lesson.exam).building}
@@ -114,6 +119,7 @@ export function LessonScreen({ lessonId }: { lessonId: string }) {
               setI(0)
               setOk(0)
               setFinished(false)
+              setPremio(null)
             }}
           >
             Repetir la sala
@@ -164,14 +170,22 @@ export function LessonScreen({ lessonId }: { lessonId: string }) {
             <button
               type="button"
               className="btn btn-block"
-              disabled={state.gems < REFILL_COST}
+              disabled={state.gems < refillCost}
               onClick={() => {
-                update((s) => ({ ...s, gems: s.gems - REFILL_COST, lives: MAX_LIVES, livesAt: Date.now() }))
+                const r = comprar(state, 'recarga_vidas')
+                if (typeof r === 'string') {
+                  app.toast(MENSAJE_ERROR[r])
+                  return
+                }
+                update((s) => {
+                  const r2 = comprar(s, 'recarga_vidas')
+                  return typeof r2 === 'string' ? s : r2
+                })
                 setNoLives(false)
                 setI(i + 1)
               }}
             >
-              Recargar 5 vidas por {REFILL_COST} gemas
+              Recargar 5 vidas por {refillCost} gemas
             </button>
             <button type="button" className="btn btn-secondary btn-block" onClick={() => go({ name: 'banco' })}>
               Practicar en la Plaza sin vidas

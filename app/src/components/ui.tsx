@@ -1,5 +1,7 @@
 import { useMemo, type ReactNode } from 'react'
-import { BOLT, FLAME, GEM, HEART, spriteToDataURL, type Sprite } from '../game/sprites'
+import { BOLT, FLAME, GEM, HEART, UKU_HAPPY, UKU_SAD, spriteToDataURL, type Sprite } from '../game/sprites'
+import type { Animo } from '../game/pixel'
+import { MiUku } from './Personaje'
 import { MAX_LIVES, nextLifeIn, type GameState } from '../lib/store'
 
 export function Px({ sprite, scale = 3, flip = false, alt = '', className }: { sprite: Sprite; scale?: number; flip?: boolean; alt?: string; className?: string }) {
@@ -16,7 +18,7 @@ export function Px({ sprite, scale = 3, flip = false, alt = '', className }: { s
   )
 }
 
-export function Hud({ state, onLives }: { state: GameState; onLives?: () => void }) {
+export function Hud({ state, onLives, onGems }: { state: GameState; onLives?: () => void; onGems?: () => void }) {
   const unlimited = state.pro
   const mins = Math.ceil(nextLifeIn(state) / 60000)
   return (
@@ -32,17 +34,17 @@ export function Hud({ state, onLives }: { state: GameState; onLives?: () => void
           <Px sprite={HEART} scale={3} />
           <span>{unlimited ? '∞' : state.lives}</span>
         </button>
-        <span className="hud-chip" aria-label={`${state.gems} gemas`}>
+        <button type="button" className="hud-chip" onClick={onGems} aria-label={`${state.gems} gemas. Abrir la tienda`}>
           <Px sprite={GEM} scale={3} />
           <span>{state.gems}</span>
-        </span>
+        </button>
         <span className="hud-chip" aria-label={`Racha de ${state.streak} días`}>
           <Px sprite={FLAME} scale={3} />
           <span>{state.streak}</span>
         </span>
-        <span className="hud-chip" aria-label={`${state.xp} puntos de experiencia`}>
+        <span className="hud-chip" aria-label={`Nivel ${state.nivel}, ${state.xp} puntos de experiencia`}>
           <Px sprite={BOLT} scale={3} />
-          <span>{state.xp}</span>
+          <span>N{state.nivel}</span>
         </span>
       </div>
     </header>
@@ -77,11 +79,13 @@ export function NavBar({ active, onGo }: { active: Tab; onGo: (t: Tab) => void }
   )
 }
 
-export function UkuSays({ sprite, children, tone = 'neutral' }: { sprite: Sprite; children: ReactNode; tone?: 'neutral' | 'ok' | 'bad' }) {
+/** Diálogo de Uku: muestra al Uku del jugador (su etapa y accesorios) con el ánimo del momento. */
+export function UkuSays({ sprite, children, tone = 'neutral' }: { sprite?: Sprite; children: ReactNode; tone?: 'neutral' | 'ok' | 'bad' }) {
+  const animo: Animo = sprite === UKU_HAPPY ? 'feliz' : sprite === UKU_SAD ? 'triste' : tone === 'ok' ? 'feliz' : 'normal'
   return (
     <div className={`uku-says tone-${tone}`}>
       <div className="uku-portrait px">
-        <Px sprite={sprite} scale={4} alt="Uku" />
+        <MiUku animo={animo} size={64} />
       </div>
       <div className="uku-text">{children}</div>
     </div>

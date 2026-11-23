@@ -28,6 +28,10 @@ export function Plaza() {
           <span className="tile-name">Tarjetas</span>
           <span className="tile-meta">Repaso rápido de conceptos clave</span>
         </button>
+        <button type="button" className="plaza-tile px tile-tienda" onClick={() => go({ name: 'tienda' })}>
+          <span className="tile-name">Tienda del Campus</span>
+          <span className="tile-meta">Accesorios para ti y para {state.ukuNombre}, y ayudas para estudiar</span>
+        </button>
       </div>
     </main>
   )
